@@ -41,7 +41,13 @@ void world(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 	glPushMatrix();
 	
+	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
+	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
+	/* それぞれの位置を取得・設定していく             */
+	
 	/* カメラ位置の設定 */
+	/* TODO: GL_Utilityにmove_pos関数の追加           */
+	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
 	camera.get_pos(&x, &y, &z);
 	GL_Utility::polarview(0, 0, 0, 0);
