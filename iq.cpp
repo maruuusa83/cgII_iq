@@ -60,15 +60,13 @@ void world(void)
 	
 	/* シェーディングの設定 */
 	glEnable(GL_DEPTH_TEST);
-	float diffuse[] = { 0.9, 0.9, 0.9, 1.0 };
-	float specular[] = { 0.9, 0.9, 0.9, 1.0 };
-	float ambient[] = {0.7, 0.7, 0.7, 1.0};
-	float shininess = 128.0;
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_advantage_cube.diffuse);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_advantage_cube.specular);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_advantage_cube.ambient);
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, mat_advantage_cube.shininess);
 	glEnable(GL_LIGHTING);
+	
+	Stage::make_stage(0.0);
 	
 	
 	/*** テストオブジェクト ***/
@@ -76,6 +74,11 @@ void world(void)
 	glutSolidCube(1.0);
 	glPopMatrix();
 	/*** テストオブジェクトここまで ***/
+	
+	
+	/* 後片付け */
+	glDisable(GL_LIGHTING);
+	glDisable(GL_DEPTH_TEST);
 	
 	glPopMatrix();
 	

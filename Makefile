@@ -1,8 +1,8 @@
 all: iq
 
 # 実行ファイルの生成
-iq: iq.obj Camera.obj GL_Utility.obj
-	bcc32 iq.obj Camera.obj GL_Utility.obj
+iq: iq.obj Camera.obj GL_Utility.obj Stage.obj
+	bcc32 iq.obj Camera.obj GL_Utility.obj Stage.obj
 
 main: main.obj Stage.obj GL_Utility.obj
 	bcc32 main.obj Stage.obj GL_Utility.obj
