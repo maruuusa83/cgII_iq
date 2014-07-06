@@ -2,7 +2,7 @@
 
 /* プレイヤーの位置に合わせて前後させながら */
 /* ステージを描画する                       */
-void Stage::make_stage(float pos_z)
+void Stage::make_stage()
 {
 	int i, j;
 	

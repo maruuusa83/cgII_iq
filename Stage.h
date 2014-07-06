@@ -9,7 +9,7 @@ extern MAT mat_normal_cube;
 class Stage
 {
 public:
-	static void make_stage(float pos_z);
+	static void make_stage();
 };
 
 #endif

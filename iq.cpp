@@ -50,6 +50,9 @@ void world(void)
 	camera.get_pos(&x, &y, &z);
 	GL_Utility::polarview(20, -10, -40, 20);
 	
+	/* ステージ位置の調整 */
+	glTranslatef(0.0, 0.0, 0.0); //プレイヤーのx方向の位置に合わせる
+	
 	/* 光源の移動 */
 	glPushMatrix();
 	GLfloat light_position0[] = {0.0, 10.0, 0.0, 1.0};
@@ -58,8 +61,12 @@ void world(void)
 	
 	
 	
+	
+	/* プレイヤーの描画 */
+	//Player::draw(0.0, 0.0); //z軸を正面とした方向ベクトルを渡す
+	
 	/* ステージの生成 */
-	Stage::make_stage(0.0);
+	Stage::make_stage();
 	
 	/* 後片付け */
 	glDisable(GL_LIGHTING);
