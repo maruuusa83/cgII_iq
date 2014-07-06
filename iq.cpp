@@ -26,6 +26,9 @@ void init(int argc, char **argv)
 	glutCreateWindow(argv[0]);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
+	
+	glEnable(GL_LIGHT0);
+	
 	/* カメラに関する設定 */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -47,12 +50,32 @@ void world(void)
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
 	camera.get_pos(&x, &y, &z);
-	GL_Utility::polarview(10, 0, 0, 0);
+	GL_Utility::polarview(10, 30, 50, 30);
+	
+	
+	/* 光源の移動 */
+	glPushMatrix();
+	GLfloat light_position0[] = {0.0, 0.0, 3.0, 1.0};
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
+	glPopMatrix();
+	
+	
+	/* シェーディングの設定 */
+	glEnable(GL_DEPTH_TEST);
+	float diffuse[] = { 0.9, 0.9, 0.9, 1.0 };
+	float specular[] = { 0.9, 0.9, 0.9, 1.0 };
+	float ambient[] = {0.7, 0.7, 0.7, 1.0};
+	float shininess = 128.0;
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+	glEnable(GL_LIGHTING);
 	
 	
 	/*** テストオブジェクト ***/
 	glPushMatrix();
-	glutSolidCone(1.0, 2.0, 12, 3);
+	glutSolidCube(1.0);
 	glPopMatrix();
 	/*** テストオブジェクトここまで ***/
 	
