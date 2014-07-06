@@ -5,3 +5,4 @@
 
 void init(int argc, char **argv);
 void world(void);
+void idle(void);

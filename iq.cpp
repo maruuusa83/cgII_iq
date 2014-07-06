@@ -34,21 +34,36 @@ void init(int argc, char **argv)
 	
 	/* 各コールバックの設定 */
 	glutDisplayFunc(world); //描画処理の関数を設定
+	glutIdleFunc(idle); //アイドル中の処理を設定
 }
 
 void world(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
-	
-	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
-	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
-	/* それぞれの位置を取得・設定していく             */
 	
 	/* カメラ位置の設定 */
 	/* TODO: GL_Utilityにmove_pos関数の追加           */
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
 	camera.get_pos(&x, &y, &z);
-	GL_Utility::polarview(0, 0, 0, 0);
+	GL_Utility::polarview(10, 0, 0, 0);
+	
+	
+	/*** テストオブジェクト ***/
+	glPushMatrix();
+	glutSolidCone(1.0, 2.0, 12, 3);
+	glPopMatrix();
+	/*** テストオブジェクトここまで ***/
+	
+	glPopMatrix();
+	
+	glutSwapBuffers();
+}
+
+void idle(void)
+{
+	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
+	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
+	/* それぞれの位置を取得・設定していく             */
 }
