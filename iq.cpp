@@ -30,11 +30,6 @@ void init(int argc, char **argv)
 	glEnable(GL_LIGHT0);
 	
 	/* カメラに関する設定 */
-	/*
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(30.0, (float)DISPLAY_WIDTH / (float)DISPLAY_HEIGHT, 1.0, 50.0);
-	glMatrixMode(GL_MODELVIEW);*/
 	GL_Utility::reshape(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 	
 	/* 各コールバックの設定 */
@@ -69,10 +64,10 @@ void world(void)
 	float specular[] = { 0.9, 0.9, 0.9, 1.0 };
 	float ambient[] = {0.7, 0.7, 0.7, 1.0};
 	float shininess = 128.0;
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_advantage_cube.diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_advantage_cube.specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_advantage_cube.ambient);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, mat_advantage_cube.shininess);
 	glEnable(GL_LIGHTING);
 	
 	

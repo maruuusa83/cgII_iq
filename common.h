@@ -15,4 +15,15 @@
 #define KEY_ESC 27
 
 
+/* 各キューブの質感の設定 */
+typedef struct _mat
+{
+	float diffuse[4];
+	float specular[4];
+	float ambient[4];
+	float shininess;
+} MAT;
+
+
+
 #endif
