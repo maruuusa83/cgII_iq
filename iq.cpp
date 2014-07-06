@@ -59,7 +59,8 @@ void world(void)
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
 	glPopMatrix();
 	
-	
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
 	
 	
 	/* ÉvÉåÉCÉÑÅ[ÇÃï`âÊ */
