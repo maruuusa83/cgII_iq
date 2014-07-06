@@ -32,6 +32,5 @@ MAT mat_advantage_cube =
 		{0.8, 0.8, 0.8, 1.0},
 		128.0
 	};
-	
 
 #endif

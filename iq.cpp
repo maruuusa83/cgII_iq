@@ -48,33 +48,18 @@ void world(void)
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
 	camera.get_pos(&x, &y, &z);
-	GL_Utility::polarview(10, 30, 50, 30);
-	
+	GL_Utility::polarview(20, -10, -40, 20);
 	
 	/* 光源の移動 */
 	glPushMatrix();
-	GLfloat light_position0[] = {0.0, 0.0, 3.0, 1.0};
+	GLfloat light_position0[] = {0.0, 10.0, 0.0, 1.0};
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
 	glPopMatrix();
 	
 	
-	/* シェーディングの設定 */
-	glEnable(GL_DEPTH_TEST);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_advantage_cube.diffuse);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_advantage_cube.specular);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_advantage_cube.ambient);
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, mat_advantage_cube.shininess);
-	glEnable(GL_LIGHTING);
 	
+	/* ステージの生成 */
 	Stage::make_stage(0.0);
-	
-	
-	/*** テストオブジェクト ***/
-	glPushMatrix();
-	glutSolidCube(1.0);
-	glPopMatrix();
-	/*** テストオブジェクトここまで ***/
-	
 	
 	/* 後片付け */
 	glDisable(GL_LIGHTING);

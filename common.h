@@ -24,6 +24,4 @@ typedef struct _mat
 	float shininess;
 } MAT;
 
-
-
 #endif

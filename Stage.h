@@ -4,6 +4,8 @@
 
 #include "./common.h"
 
+extern MAT mat_normal_cube;
+
 class Stage
 {
 public:
