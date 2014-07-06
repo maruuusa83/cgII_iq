@@ -30,14 +30,17 @@ void init(int argc, char **argv)
 	glEnable(GL_LIGHT0);
 	
 	/* カメラに関する設定 */
+	/*
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(30.0, (float)DISPLAY_WIDTH / (float)DISPLAY_HEIGHT, 1.0, 50.0);
-	glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_MODELVIEW);*/
+	GL_Utility::reshape(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 	
 	/* 各コールバックの設定 */
 	glutDisplayFunc(world); //描画処理の関数を設定
 	glutIdleFunc(idle); //アイドル中の処理を設定
+	glutReshapeFunc(GL_Utility::reshape); //画面サイズが変更された時の処理
 }
 
 void world(void)
