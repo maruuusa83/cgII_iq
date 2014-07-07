@@ -3,13 +3,14 @@
 
 
 #include "./common.h"
+#include "./Object.h"
 
 extern MAT mat_normal_cube;
 
-class Stage
-{
+class Stage : public Object {
 public:
-	static void make_stage();
+	void calc(void);
+	void draw(void);
 };
 
 #endif

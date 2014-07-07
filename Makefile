@@ -1,8 +1,8 @@
 all: iq
 
 # 実行ファイルの生成
-iq: iq.obj Camera.obj GL_Utility.obj Stage.obj
-	bcc32 iq.obj Camera.obj GL_Utility.obj Stage.obj
+iq: iq.obj Camera.obj GL_Utility.obj Stage.obj Player.obj
+	bcc32 iq.obj Camera.obj GL_Utility.obj Stage.obj Player.obj
 
 main: main.obj Stage.obj GL_Utility.obj
 	bcc32 main.obj Stage.obj GL_Utility.obj
@@ -17,6 +17,9 @@ main.obj: main.cpp main.h common.h
 
 Stage.obj: Stage.cpp Stage.h common.h
 	bcc32 -c Stage.cpp
+
+Player.obj: Player.cpp Player.h common.h
+	bcc32 -c Player.cpp
 
 GL_Utility.obj: GL_Utility.cpp GL_Utility.h common.h
 	bcc32 -c GL_Utility.cpp

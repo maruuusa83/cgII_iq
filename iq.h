@@ -6,6 +6,8 @@
 #include "./Camera.h"
 #include "./GL_Utility.h"
 #include "./Stage.h"
+#include "./Player.h"
+#include "./Event.h"
 
 void init(int argc, char **argv);
 void world(void);

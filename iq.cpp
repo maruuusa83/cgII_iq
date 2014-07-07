@@ -1,7 +1,12 @@
 #include "./iq.h"
 
+/* イベント管理 */
+Event event;
+
 /* オブジェクト */
 Camera camera(0, 0, 0);
+Stage stage;
+Player player;
 
 int main(int argc, char **argv)
 {
@@ -63,13 +68,26 @@ void world(void)
 	glEnable(GL_LIGHTING);
 	
 	
+	/*** オブジェクトの描画の開始               ***/
+	/*** 描画関数の前後で行列を保存しています。 ***/
+	/*** なかで行列の保存をし忘れても大丈夫なよ ***/
+	/*** うにするためです                       ***/
 	/* プレイヤーの描画 */
-	//Player::draw(0.0, 0.0); //z軸を正面とした方向ベクトルを渡す
+	glPushMatrix();
+	glTranslatef(0.0, 0.75, 0.0);
+	glPushMatrix();
+	player.draw();
+	glPopMatrix();
+	glPopMatrix();
 	
 	/* ステージの生成 */
-	Stage::make_stage();
+	glPushMatrix();
+	stage.draw();
+	glPopMatrix();
+	/*** オブジェクトの描画ここまで ***/
 	
-	/* 後片付け */
+	
+	/* ここから先、後片付け */
 	glDisable(GL_LIGHTING);
 	glDisable(GL_DEPTH_TEST);
 	
@@ -83,4 +101,9 @@ void idle(void)
 	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
 	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
 	/* それぞれの位置を取得・設定していく             */
+	player.calc();
+	stage.calc();
+	
+	
+	glutPostRedisplay(); /* 再描画の呼び出し */
 }
