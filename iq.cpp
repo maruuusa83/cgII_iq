@@ -1,12 +1,12 @@
 #include "./iq.h"
 
 /* イベント管理 */
-Event event;
+Event *event = new Event;
 
 /* オブジェクト */
-Camera camera(0, 0, 0);
-Stage stage;
-Player player;
+Camera *camera = new Camera(0, 0, 0);
+Stage *stage = new Stage;
+Player *player = new Player;
 
 int main(int argc, char **argv)
 {
@@ -30,7 +30,6 @@ void init(int argc, char **argv)
 	/* 画面の初期化 */ 
 	glutCreateWindow(argv[0]);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-
 	
 	glEnable(GL_LIGHT0);
 	
@@ -56,7 +55,7 @@ void world(void)
 	/* TODO: GL_Utilityにmove_pos関数の追加           */
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
-	camera.get_pos(&x, &y, &z);
+	camera->get_pos(&x, &y, &z);
 	GL_Utility::polarview(20, -10, -40, 20);
 	
 	/* ステージ位置の調整 */
@@ -78,15 +77,15 @@ void world(void)
 	/*** うにするためです                       ***/
 	/* プレイヤーの描画 */
 	glPushMatrix();
-	glTranslatef(0.0, 0.75, 0.0);
-	glPushMatrix();
-	player.draw();
-	glPopMatrix();
+		glTranslatef(0.0, 0.75, 0.0);
+		glPushMatrix();
+	    	player->draw();
+		glPopMatrix();
 	glPopMatrix();
 	
 	/* ステージの生成 */
 	glPushMatrix();
-	stage.draw();
+		stage->draw();
 	glPopMatrix();
 	/*** オブジェクトの描画ここまで ***/
 	
@@ -105,8 +104,8 @@ void idle(void)
 	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
 	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
 	/* それぞれの位置を取得・設定していく             */
-	player.calc();
-	stage.calc();
+	player->calc();
+	stage->calc();
 	
 	
 	glutPostRedisplay(); /* 再描画の呼び出し */
@@ -114,15 +113,15 @@ void idle(void)
 
 void on_mouse(int button, int state, int x, int y)
 {
-	event.call_mouse_listeners(button, state, x, y);
+	event->call_mouse_listeners(button, state, x, y);
 }
 
 void on_key(unsigned char key, int x, int y)
 {
-	event.call_key_listeners(key);
+	event->call_key_listeners(key);
 }
 
 void on_skey(int key, int x, int y)
 {
-	event.call_key_listeners(key);
+	event->call_key_listeners(key);
 }
