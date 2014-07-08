@@ -1,5 +1,5 @@
-#ifndef __COMMON_H__
-#define __COMMON_H__
+#ifndef __CAMERA_H__
+#define __CAMERA_H__
 
 
 #include "./common.h"
@@ -7,11 +7,13 @@
 class Camera
 {
 private:
-	float x, y, z;
+	float mx, my, mz;
 	
 public:
-	void move_pos(float x, float y, float z, float direction_x, float direction_y, float direction_z);
-}
+	Camera(float x, float y, float z);
+	
+	void get_pos(float *x, float *y, float *z);
+};
 
 
 #endif
