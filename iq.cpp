@@ -6,7 +6,7 @@ Event *event = new Event;
 /* オブジェクト */
 Camera *camera = new Camera(0, 0, 0);
 Stage *stage = new Stage;
-Player player;
+Player *player = new Player;
 
 int main(int argc, char **argv)
 {
@@ -30,7 +30,6 @@ void init(int argc, char **argv)
 	/* 画面の初期化 */ 
 	glutCreateWindow(argv[0]);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-
 	
 	glEnable(GL_LIGHT0);
 	
@@ -78,15 +77,15 @@ void world(void)
 	/*** うにするためです                       ***/
 	/* プレイヤーの描画 */
 	glPushMatrix();
-	glTranslatef(0.0, 0.75, 0.0);
-	glPushMatrix();
-	player.draw();
-	glPopMatrix();
+		glTranslatef(0.0, 0.75, 0.0);
+		glPushMatrix();
+	    	player->draw();
+		glPopMatrix();
 	glPopMatrix();
 	
 	/* ステージの生成 */
 	glPushMatrix();
-	stage->draw();
+		stage->draw();
 	glPopMatrix();
 	/*** オブジェクトの描画ここまで ***/
 	
@@ -105,7 +104,7 @@ void idle(void)
 	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
 	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
 	/* それぞれの位置を取得・設定していく             */
-	player.calc();
+	player->calc();
 	stage->calc();
 	
 	
