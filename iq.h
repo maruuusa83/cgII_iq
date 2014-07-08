@@ -8,6 +8,7 @@
 #include "./Stage.h"
 #include "./Player.h"
 #include "./Event.h"
+#include "./Puzzle.h"
 
 void init(int argc, char **argv);
 void world(void);

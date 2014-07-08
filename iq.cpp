@@ -7,6 +7,7 @@ Event *event = new Event;
 Camera *camera = new Camera(0, 0, 0);
 Stage *stage = new Stage;
 Player *player = new Player;
+Puzzle *puzzle = new Puzzle;
 
 int main(int argc, char **argv)
 {
@@ -86,6 +87,11 @@ void world(void)
 	/* ステージの生成 */
 	glPushMatrix();
 		stage->draw();
+	glPopMatrix();
+	
+	/* パズルの描画 */
+	glPushMatrix();
+		puzzle->draw();
 	glPopMatrix();
 	/*** オブジェクトの描画ここまで ***/
 	
