@@ -7,6 +7,7 @@ Event *event = new Event;
 Camera *camera = new Camera(0, 0, 0);
 Stage *stage = new Stage;
 Player *player = new Player;
+Puzzle *puzzle = new Puzzle;
 
 int main(int argc, char **argv)
 {
@@ -56,7 +57,7 @@ void world(void)
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
 	camera->get_pos(&x, &y, &z);
-	GL_Utility::polarview(20, -10, -40, 20);
+	GL_Utility::polarview(20, -5, -25, 45);
 	
 	/* ステージ位置の調整 */
 	glTranslatef(0.0, 0.0, 0.0); //プレイヤーのx方向の位置に合わせる
@@ -87,6 +88,11 @@ void world(void)
 	glPushMatrix();
 		stage->draw();
 	glPopMatrix();
+	
+	/* パズルの描画 */
+	glPushMatrix();
+		puzzle->draw();
+	glPopMatrix();
 	/*** オブジェクトの描画ここまで ***/
 	
 	
@@ -106,6 +112,7 @@ void idle(void)
 	/* それぞれの位置を取得・設定していく             */
 	player->calc();
 	stage->calc();
+	puzzle->calc();
 	
 	
 	glutPostRedisplay(); /* 再描画の呼び出し */

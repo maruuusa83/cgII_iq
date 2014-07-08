@@ -9,11 +9,18 @@
 #include <math.h>
 #include "myShape.h"
 
+
 #define DISPLAY_WIDTH  (1280)
 #define DISPLAY_HEIGHT (960)
 
 #define KEY_ESC 27
 
+#define CUBE_NORMAL		(1)
+#define CUBE_FORBIDDEN	(2)
+#define CUBE_ADVANTAGE	(3)
+
+#define PI (3.141592653)
+#define D2R(deg) (((2.0 * (PI)) / 360.0) * (deg))
 
 /* 各キューブの質感の設定 */
 typedef struct _mat
