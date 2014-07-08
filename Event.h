@@ -12,9 +12,9 @@ using namespace std;
 
 class EventCallbackListener {
 public:
-	virtual void onMouse(int button, int state, int x, int y) {};
-	virtual void onKey(unsigned char key) {};
-	virtual void onSkey(int key) {};
+	virtual void onMouse(void *context, int button, int state, int x, int y) {};
+	virtual void onKey(void *context, unsigned char key) {};
+	virtual void onSkey(void *context, int key) {};
 };
 
 class Event {
@@ -34,9 +34,9 @@ public:
 	void call_skey_listeners(int key);
 	
 	/* ƒŠƒXƒi‚ğ’Ç‰Á‚·‚é‚ÆID‚ğ•Ô‚· */
-	int add_mouse_listener(EventCallbackListener *listener);
-	int add_key_listener(EventCallbackListener *listener);
-	int add_skey_listener(EventCallbackListener *listener);
+	int add_mouse_listener(void *context, EventCallbackListener *listener);
+	int add_key_listener(void *context, EventCallbackListener *listener);
+	int add_skey_listener(void *context, EventCallbackListener *listener);
 };
 
 #endif

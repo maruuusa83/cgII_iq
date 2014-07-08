@@ -12,7 +12,7 @@ extern Event *event;
 
 class MyEventCallbackListener : public EventCallbackListener {
 public:
-	void onKey(unsigned char key)
+	void onKey(void *context, unsigned char key)
 	{
 		printf("KEY HIT\n");
 	}
@@ -21,7 +21,7 @@ public:
 Player::Player(void)
 {
 	MyEventCallbackListener *callback = new MyEventCallbackListener;
-	event->add_key_listener(callback);
+	event->add_key_listener((void *)this, callback);
 }
 
 void Player::calc(void)
