@@ -111,7 +111,7 @@ int PuzzleCube::calc(void)
 	switch (m_state){
 	  case STATE_GENERATE:
 	  	if (m_pos_y < 1.0){
-			m_pos_y += 0.01;
+			m_pos_y += CUBE_GEN_SPD;
 			return (1);
 		}
 		else {
@@ -121,19 +121,19 @@ int PuzzleCube::calc(void)
 	  
 	  case STATE_RUN:
 	  	if (m_rot < 90.0){
-			m_rot += 1;
+			m_rot += CUBE_ROT_DEG;
 	  	}
 		else {
 			m_rot = 0.0;
 			m_pos_z++;
 			
 			m_wait = 0;
-			m_state = STATE_WAIT_NEXT;
+			m_state = STATE_WAIT_NEXT; //ˆêŽž’âŽ~‚·‚é
 		}
 		break;
 	
-	  case STATE_WAIT_NEXT:
-	  	if (m_wait > 40){
+	  case STATE_WAIT_NEXT: //ˆêŽž’âŽ~‚µ‚Ä‚¢‚éó‘Ô
+	  	if (m_wait > CUBE_WAIT_TIME){
 			m_state = STATE_RUN;
 	  	}
 		else {
