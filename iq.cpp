@@ -4,7 +4,7 @@
 Event *event = new Event;
 
 /* オブジェクト */
-Camera camera(0, 0, 0);
+Camera *camera = new Camera(0, 0, 0);
 Stage stage;
 Player player;
 
@@ -56,7 +56,7 @@ void world(void)
 	/* TODO: GL_Utilityにmove_pos関数の追加           */
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
-	camera.get_pos(&x, &y, &z);
+	camera->get_pos(&x, &y, &z);
 	GL_Utility::polarview(20, -10, -40, 20);
 	
 	/* ステージ位置の調整 */
