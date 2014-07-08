@@ -4,6 +4,7 @@
 
 #include "./common.h"
 #include "./Object.h"
+#include "./Event.h"
 
 class Player : public Object {
 private:
@@ -11,6 +12,8 @@ private:
 	float look_z, look_x;
 	
 public:
+	Player(void);
+	
 	void calc(void);
 	void draw(void);
 	

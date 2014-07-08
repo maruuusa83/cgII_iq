@@ -41,19 +41,23 @@ void Event::call_mouse_listeners(int button, int state, int x, int y)
 	}
 }
 
-void Event::call_key_listeners(int key)
+void Event::call_key_listeners(unsigned char key)
 {
-	map<int, EventCallbackListener>::iterator itr = mouse_listeners.begin();
+	map<int, EventCallbackListener>::iterator itr = key_listeners.begin();
+	
+	puts("in : Event::call_key_listeners");
 
 	while (itr != key_listeners.end()){
+		puts("call onKey");
 		(itr->second).onKey(key);
+		puts("called onKey");
 		itr++;
 	}
 }
 
 void Event::call_skey_listeners(int key)
 {
-	map<int, EventCallbackListener>::iterator itr = mouse_listeners.begin();
+	map<int, EventCallbackListener>::iterator itr = skey_listeners.begin();
 
 	while (itr != skey_listeners.end()){
 		(itr->second).onSkey(key);

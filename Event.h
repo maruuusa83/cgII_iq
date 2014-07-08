@@ -12,9 +12,9 @@ using namespace std;
 
 class EventCallbackListener {
 public:
-	virtual void onMouse(int button, int state, int x, int y);
-	virtual void onKey(unsigned char key);
-	virtual void onSkey(unsigned char key);
+	virtual void onMouse(int button, int state, int x, int y) {};
+	virtual void onKey(unsigned char key) {};
+	virtual void onSkey(int key) {};
 };
 
 class Event {
@@ -30,7 +30,7 @@ public:
 	Event(void);
 	/* リスナ呼び出し */
 	void call_mouse_listeners(int button, int state, int x, int y);
-	void call_key_listeners(int key);
+	void call_key_listeners(unsigned char key);
 	void call_skey_listeners(int key);
 	
 	/* リスナを追加するとIDを返す */
