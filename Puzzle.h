@@ -9,11 +9,24 @@
 #define STATE_GENERATE		(2)
 #define STATE_RUN			(3)
 
+class PuzzleCube : public Object {
+private:
+	char m_kind;
+	int m_pos_z, m_pos_x;
+	float m_pos_y;
+	
+public:
+	PuzzleCube(char kind);
+
+	void calc(void);
+	void draw(void);
+};
+
 class Puzzle : public Object {
 private:
-	int state;
+	int m_state;
 	
-	float puzzle_map[5][5];
+	PuzzleCube* m_puzzle_map[6][10];
 	
 public:
 	Puzzle(void);

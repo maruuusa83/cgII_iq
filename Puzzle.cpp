@@ -1,13 +1,14 @@
 #include "./Puzzle.h"
 
+/*** Puzzleクラスの定義 ***/
 Puzzle::Puzzle(void)
 {
-	state = STATE_GET_PUZZLE;
+	m_state = STATE_GET_PUZZLE;
 }
 
 void Puzzle::calc(void)
 {
-	switch (state){
+	switch (m_state){
 	  case STATE_GET_PUZZLE:
 	  	get_puzzle();
 	  	break;
@@ -30,7 +31,7 @@ void Puzzle::get_puzzle(void)
 {
 	for (int i = 0; i < 6; i++){
 		for (int j = 0; j < 10; j++){
-			puzzle_map[i][j] = CUBE_NORMAL;
+			m_puzzle_map[i][j] = new PuzzleCube(CUBE_NORMAL);
 		}
 	}
 }
@@ -43,4 +44,11 @@ void Puzzle::generate(void)
 void Puzzle::run(void)
 {
 	
+}
+
+
+/*** PuzzleCubeクラスの定義 ***/
+PuzzleCube::PuzzleCube(char kind)
+{
+	m_kind = kind;
 }

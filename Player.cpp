@@ -18,7 +18,7 @@ public:
 		Player *mPlayer = (Player *)context;
 		
 		mPlayer->get_pos(&z, &x);
-		mPlayer->set_pos(z += 0.3, x += 0.3);
+		mPlayer->set_pos(z += 0.01, x += 0.01);
 		
 		printf("KEY HIT\n");
 	}
