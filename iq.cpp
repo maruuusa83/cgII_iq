@@ -1,7 +1,7 @@
 #include "./iq.h"
 
 /* イベント管理 */
-Event event;
+Event *event = new Event;
 
 /* オブジェクト */
 Camera camera(0, 0, 0);
@@ -114,15 +114,15 @@ void idle(void)
 
 void on_mouse(int button, int state, int x, int y)
 {
-	event.call_mouse_listeners(button, state, x, y);
+	event->call_mouse_listeners(button, state, x, y);
 }
 
 void on_key(unsigned char key, int x, int y)
 {
-	event.call_key_listeners(key);
+	event->call_key_listeners(key);
 }
 
 void on_skey(int key, int x, int y)
 {
-	event.call_key_listeners(key);
+	event->call_key_listeners(key);
 }
