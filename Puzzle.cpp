@@ -43,7 +43,7 @@ void Puzzle::get_puzzle(void)
 {
 	for (int i = 0; i < 6; i++){
 		for (int j = 0; j < 10; j++){
-			m_puzzle_map[i][j] = new PuzzleCube(CUBE_NORMAL, i, j);
+			m_puzzle_map[i][j] = new PuzzleCube(CUBE_NORMAL, j, i);
 		}
 	}
 	
@@ -82,7 +82,7 @@ void PuzzleCube::draw(void)
 {
 	printf("m_pos_x : %d\n", m_kind);
 	glPushMatrix();
-	glTranslatef(1.0 * m_pos_x, m_pos_y, 1.0 * m_pos_z); 
+	glTranslatef(1.0 * m_pos_x - 2.5, m_pos_y, 1.0 * m_pos_z - 16.0); 
 	glutSolidCube(0.98);
 	glPopMatrix();
 }
