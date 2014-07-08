@@ -18,7 +18,7 @@ public:
 		Player *mPlayer = (Player *)context;
 		
 		mPlayer->get_pos(&z, &x);
-		mPlayer->set_pos(z += 1.0, x += 1.0);
+		mPlayer->set_pos(z += 0.3, x += 0.3);
 		
 		printf("KEY HIT\n");
 	}
@@ -32,7 +32,7 @@ Player::Player(void)
 
 void Player::calc(void)
 {
-	pos_z += 0.01;
+	pos_z -= 0.01;
 }
 
 /* 高さ0.5程度のプレイヤーのポリゴンをつくる */

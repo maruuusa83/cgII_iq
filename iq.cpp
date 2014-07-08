@@ -57,7 +57,7 @@ void world(void)
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
 	camera->get_pos(&x, &y, &z);
-	GL_Utility::polarview(20, -10, -40, 20);
+	GL_Utility::polarview(20, -5, -25, 20);
 	
 	/* ステージ位置の調整 */
 	glTranslatef(0.0, 0.0, 0.0); //プレイヤーのx方向の位置に合わせる

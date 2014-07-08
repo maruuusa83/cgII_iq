@@ -14,6 +14,10 @@
 
 #define KEY_ESC 27
 
+#define CUBE_NORMAL		(1)
+#define CUBE_FORBIDDEN	(2)
+#define CUBE_ADVANTAGE	(3)
+
 
 /* 各キューブの質感の設定 */
 typedef struct _mat
