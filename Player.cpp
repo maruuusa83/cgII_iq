@@ -20,7 +20,7 @@ public:
 
 Player::Player(void)
 {
-	MyEventCallbackListener callback;
+	MyEventCallbackListener *callback = new MyEventCallbackListener;
 	event.add_key_listener(callback);
 }
 

@@ -7,7 +7,7 @@ Event::Event(void)
 	skey_listeners_num = 0;
 }
 
-int Event::add_mouse_listener(EventCallbackListener listener)
+int Event::add_mouse_listener(EventCallbackListener *listener)
 {
 	mouse_listeners.insert(make_pair(mouse_listeners_num, listener));
 
@@ -15,7 +15,7 @@ int Event::add_mouse_listener(EventCallbackListener listener)
 	return (mouse_listeners_num - 1);
 }
 
-int Event::add_key_listener(EventCallbackListener listener)
+int Event::add_key_listener(EventCallbackListener *listener)
 {
 	key_listeners.insert(make_pair(key_listeners_num, listener));
 
@@ -23,7 +23,7 @@ int Event::add_key_listener(EventCallbackListener listener)
 	return (key_listeners_num - 1);
 }
 
-int Event::add_skey_listener(EventCallbackListener listener)
+int Event::add_skey_listener(EventCallbackListener *listener)
 {
 	skey_listeners.insert(make_pair(skey_listeners_num, listener));
 
@@ -33,23 +33,23 @@ int Event::add_skey_listener(EventCallbackListener listener)
 
 void Event::call_mouse_listeners(int button, int state, int x, int y)
 {
-	map<int, EventCallbackListener>::iterator itr = mouse_listeners.begin();
+	map<int, EventCallbackListener*>::iterator itr = mouse_listeners.begin();
 
 	while (itr != mouse_listeners.end()){
-		(itr->second).onMouse(button, state, x, y);
+		(itr->second)->onMouse(button, state, x, y);
 		itr++;
 	}
 }
 
 void Event::call_key_listeners(unsigned char key)
 {
-	map<int, EventCallbackListener>::iterator itr = key_listeners.begin();
+	map<int, EventCallbackListener*>::iterator itr = key_listeners.begin();
 	
 	puts("in : Event::call_key_listeners");
 
 	while (itr != key_listeners.end()){
 		puts("call onKey");
-		(itr->second).onKey(key);
+		(itr->second)->onKey(key);
 		puts("called onKey");
 		itr++;
 	}
@@ -57,10 +57,10 @@ void Event::call_key_listeners(unsigned char key)
 
 void Event::call_skey_listeners(int key)
 {
-	map<int, EventCallbackListener>::iterator itr = skey_listeners.begin();
+	map<int, EventCallbackListener*>::iterator itr = skey_listeners.begin();
 
 	while (itr != skey_listeners.end()){
-		(itr->second).onSkey(key);
+		(itr->second)->onSkey(key);
 		itr++;
 	}
 }

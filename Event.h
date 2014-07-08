@@ -22,9 +22,9 @@ private:
 	int mouse_listeners_num;
 	int key_listeners_num;
 	int skey_listeners_num;
-	map<int, EventCallbackListener> mouse_listeners;
-	map<int, EventCallbackListener> key_listeners;
-	map<int, EventCallbackListener> skey_listeners;
+	map<int, EventCallbackListener*> mouse_listeners;
+	map<int, EventCallbackListener*> key_listeners;
+	map<int, EventCallbackListener*> skey_listeners;
 	
 public:
 	Event(void);
@@ -34,9 +34,9 @@ public:
 	void call_skey_listeners(int key);
 	
 	/* ƒŠƒXƒi‚ğ’Ç‰Á‚·‚é‚ÆID‚ğ•Ô‚· */
-	int add_mouse_listener(EventCallbackListener listener);
-	int add_key_listener(EventCallbackListener listener);
-	int add_skey_listener(EventCallbackListener listener);
+	int add_mouse_listener(EventCallbackListener *listener);
+	int add_key_listener(EventCallbackListener *listener);
+	int add_skey_listener(EventCallbackListener *listener);
 };
 
 #endif
