@@ -45,12 +45,8 @@ void Event::call_key_listeners(unsigned char key)
 {
 	map<int, EventCallbackListener*>::iterator itr = key_listeners.begin();
 	
-	puts("in : Event::call_key_listeners");
-
 	while (itr != key_listeners.end()){
-		puts("call onKey");
 		(itr->second)->onKey(key);
-		puts("called onKey");
 		itr++;
 	}
 }
