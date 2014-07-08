@@ -5,6 +5,8 @@
 #include "./common.h"
 #include "./Object.h"
 
+#include <stdio.h>
+
 #define STATE_GET_PUZZLE	(1)
 #define STATE_GENERATE		(2)
 #define STATE_RUN			(3)
@@ -13,10 +15,10 @@ class PuzzleCube : public Object {
 private:
 	char m_kind;
 	int m_pos_z, m_pos_x;
-	float m_pos_y;
+	int m_pos_y;
 	
 public:
-	PuzzleCube(char kind);
+	PuzzleCube(char kind, int pos_z, int pos_x);
 
 	void calc(void);
 	void draw(void);

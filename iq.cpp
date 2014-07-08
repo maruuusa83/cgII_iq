@@ -112,6 +112,7 @@ void idle(void)
 	/* ‚»‚ê‚¼‚ê‚ÌˆÊ’u‚ğæ“¾Eİ’è‚µ‚Ä‚¢‚­             */
 	player->calc();
 	stage->calc();
+	puzzle->calc();
 	
 	
 	glutPostRedisplay(); /* Ä•`‰æ‚ÌŒÄ‚Ño‚µ */
