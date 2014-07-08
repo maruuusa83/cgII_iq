@@ -39,6 +39,7 @@ void Puzzle::draw(void)
 	}
 }
 
+/* ƒpƒYƒ‹‚ğæ“¾‚µ‚Äİ’è‚·‚éŠÖ” */
 void Puzzle::get_puzzle(void)
 {
 	for (int i = 0; i < 6; i++){
@@ -73,13 +74,22 @@ void Puzzle::generate(void)
 	}
 	
 	if (flag == 0){
+		for (int i = 0; i < 6; i++){
+			for (int j = 0; j < 10; j++){
+				m_puzzle_map[i][j]->start_run();
+			}
+		}
 		m_state = STATE_RUN;
 	}
 }
 
 void Puzzle::run(void)
 {
-
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 10; j++){
+			m_puzzle_map[i][j]->calc();
+		}
+	}
 }
 
 
@@ -93,6 +103,7 @@ PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 	m_pos_x = pos_x;
 	
 	m_pos_y = -0.01; //0.0‚É‚µ‚Ä‚¢‚é‚Æ”÷–­‚ÉŒ©‚¦‚é‚Ì‚Å­‚µ‰º‚°‚é
+	m_rot = 0.0;
 }
 
 int PuzzleCube::calc(void)
@@ -103,11 +114,19 @@ int PuzzleCube::calc(void)
 			m_pos_y += 0.01;
 			return (1);
 		}
-		
+		else {
+			m_state = STATE_STOP;
+		}
 		return (0);
 	  
 	  case STATE_RUN:
-	  	
+	  	if (m_rot < 90.0){
+			m_rot += 1;
+	  	}
+		else {
+			m_rot = 0.0;
+			m_pos_z++;
+		}
 		break;
 	}
 	
@@ -140,7 +159,12 @@ void PuzzleCube::draw(void)
 	glMaterialf(GL_FRONT_AND_BACK,  GL_SHININESS, mat.shininess);
 	
 	glPushMatrix();
-	glTranslatef(1.0 * m_pos_x - 2.5, m_pos_y, 1.0 * m_pos_z - 16.0); 
+	
+	float x = 1.0 * m_pos_x - 2.5;
+	float y = m_pos_y + ((sqrt((0.98 * 0.98) / 2.0) * sin(D2R(m_rot) + (PI / 4.0))) - (sqrt((0.98 * 0.98) / 2.0) * sin(PI / 4.0)));
+	float z = 1.0 * m_pos_z - 16.0 - ((sqrt((0.98 * 0.98) / 2.0) * cos(D2R(m_rot) + (PI / 4.0)))) - 0.5;
+	glTranslatef(x, y, z);
+	GL_Utility::polarview(0, 0, -m_rot, 0);
 	glutSolidCube(0.98);
 	glPopMatrix();
 }

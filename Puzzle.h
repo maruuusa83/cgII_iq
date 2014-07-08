@@ -4,6 +4,7 @@
 
 #include "./common.h"
 #include "./Object.h"
+#include "./GL_Utility.h"
 
 #include <stdio.h>
 
@@ -22,6 +23,7 @@ private:
 	char m_state;
 	int m_pos_z, m_pos_x;
 	float m_pos_y;
+	float m_rot;
 	
 public:
 	PuzzleCube(char kind, int pos_z, int pos_x);
