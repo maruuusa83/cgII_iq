@@ -43,7 +43,7 @@ void Puzzle::get_puzzle(void)
 {
 	for (int i = 0; i < 6; i++){
 		for (int j = 0; j < 10; j++){
-			m_puzzle_map[i][j] = new PuzzleCube(CUBE_NORMAL, j, i);
+			m_puzzle_map[i][j] = new PuzzleCube((i + j) % 3 + 1, j, i);
 		}
 	}
 	
@@ -55,9 +55,18 @@ void Puzzle::generate(void)
 	int flag = 0;
 	for (int i = 0; i < 6; i++){
 		for (int j = 0; j < 10; j++){
-			float pos_y = m_puzzle_map[i][j]->get_pos_y();
-			if (pos_y < 1.0){
-				m_puzzle_map[i][j]->set_pos_y(pos_y + 0.01);
+			/* 奥から順番に呼ばれるように調整 */
+			if (j == 0){
+				m_puzzle_map[i][j]->start_generate();
+			}
+			else {
+				if (m_puzzle_map[i][j - 1]->get_pos_y() > 0.3){
+					m_puzzle_map[i][j]->start_generate();
+				}
+			}
+			
+			/* すべてが浮上し終えるまで繰り返すためのフラグ */
+			if ((m_puzzle_map[i][j]->get_state() == STATE_GENERATE) && (m_puzzle_map[i][j]->calc() == 1)){
 				flag = 1;
 			}
 		}
@@ -70,33 +79,80 @@ void Puzzle::generate(void)
 
 void Puzzle::run(void)
 {
-	
+
 }
 
 
 /*** PuzzleCubeクラスの定義 ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
+	m_state = STATE_STOP;
+	
 	m_kind = kind;
 	m_pos_z = pos_z;
 	m_pos_x = pos_x;
 	
-	m_pos_y = 0.0;
-	
-	printf("m_pos_x : %d\n", m_kind);
+	m_pos_y = -0.01; //0.0にしていると微妙に見えるので少し下げる
 }
 
-void PuzzleCube::calc(void)
+int PuzzleCube::calc(void)
 {
+	switch (m_state){
+	  case STATE_GENERATE:
+	  	if (m_pos_y < 1.0){
+			m_pos_y += 0.01;
+			return (1);
+		}
+		
+		return (0);
+	  
+	  case STATE_RUN:
+	  	
+		break;
+	}
 	
+	return (0);
 }
 
 void PuzzleCube::draw(void)
 {
+	MAT mat;
+	
+	switch (m_kind){
+	  case CUBE_NORMAL:
+	  	mat = mat_normal_cube;
+	  	break;
+	
+	  case CUBE_FORBIDDEN:
+	  	mat = mat_forbidden_cube;
+	  	break;
+	
+	  case CUBE_ADVANTAGE:
+	  	mat = mat_advantage_cube;
+	  	break;
+	
+	  default:
+	  	mat = mat_normal_cube;
+	}
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE,   mat.diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR,  mat.specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   mat.ambient);
+	glMaterialf(GL_FRONT_AND_BACK,  GL_SHININESS, mat.shininess);
+	
 	glPushMatrix();
 	glTranslatef(1.0 * m_pos_x - 2.5, m_pos_y, 1.0 * m_pos_z - 16.0); 
 	glutSolidCube(0.98);
 	glPopMatrix();
+}
+
+void PuzzleCube::start_generate(void)
+{
+	m_state = STATE_GENERATE;
+}
+
+void PuzzleCube::start_run(void)
+{
+	m_state = STATE_RUN;
 }
 
 void PuzzleCube::set_pos_y(float pos_y)
@@ -106,4 +162,8 @@ void PuzzleCube::set_pos_y(float pos_y)
 float PuzzleCube::get_pos_y(void)
 {
 	return (m_pos_y);
+}
+int PuzzleCube::get_state(void)
+{
+	return (m_state);
 }
