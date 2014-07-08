@@ -12,7 +12,7 @@ void Event::call_mouse_listeners(int button, int state, int x, int y)
 	map<int, EventCallbackListener*>::iterator itr = mouse_listeners.begin();
 
 	while (itr != mouse_listeners.end()){
-		(itr->second)->onMouse(NULL, button, state, x, y);
+		(itr->second)->onMouse(mouse_contexts[itr->first], button, state, x, y);
 		itr++;
 	}
 }
@@ -22,7 +22,7 @@ void Event::call_key_listeners(unsigned char key)
 	map<int, EventCallbackListener*>::iterator itr = key_listeners.begin();
 	
 	while (itr != key_listeners.end()){
-		(itr->second)->onKey(NULL, key);
+		(itr->second)->onKey(key_contexts[itr->first], key);
 		itr++;
 	}
 }
@@ -32,7 +32,7 @@ void Event::call_skey_listeners(int key)
 	map<int, EventCallbackListener*>::iterator itr = skey_listeners.begin();
 
 	while (itr != skey_listeners.end()){
-		(itr->second)->onSkey(NULL, key);
+		(itr->second)->onSkey(skey_contexts[itr->first], key);
 		itr++;
 	}
 }
