@@ -7,6 +7,22 @@ MAT mat_player =
 		{0.3, 0.3, 0.3, 1.0},
 		100.0
 	};
+	
+extern Event event;
+
+class MyEventCallbackListener : public EventCallbackListener {
+public:
+	void onKey(unsigned char key)
+	{
+		printf("KEY HIT\n");
+	}
+};
+
+Player::Player(void)
+{
+	MyEventCallbackListener *callback = new MyEventCallbackListener;
+	event.add_key_listener(callback);
+}
 
 void Player::calc(void)
 {

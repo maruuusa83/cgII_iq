@@ -18,7 +18,7 @@ main.obj: main.cpp main.h common.h
 Stage.obj: Stage.cpp Stage.h common.h
 	bcc32 -c Stage.cpp
 
-Player.obj: Player.cpp Player.h common.h
+Player.obj: Player.cpp Player.h common.h Object.h
 	bcc32 -c Player.cpp
 	
 Event.obj: Event.cpp Event.h common.h

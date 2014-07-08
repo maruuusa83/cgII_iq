@@ -7,8 +7,8 @@
 class Object
 {
 public:
-	virtual void calc(void);
-	virtual void draw(void);
+	void calc(void) {};
+	void draw(void) {};
 };
 
 #endif

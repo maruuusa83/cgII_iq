@@ -41,6 +41,10 @@ void init(int argc, char **argv)
 	glutDisplayFunc(world); //描画処理の関数を設定
 	glutIdleFunc(idle); //アイドル中の処理を設定
 	glutReshapeFunc(GL_Utility::reshape); //画面サイズが変更された時の処理
+	
+	glutMouseFunc(on_mouse);
+	glutKeyboardFunc(on_key);
+	glutSpecialFunc(on_skey);
 }
 
 void world(void)
@@ -106,4 +110,19 @@ void idle(void)
 	
 	
 	glutPostRedisplay(); /* 再描画の呼び出し */
+}
+
+void on_mouse(int button, int state, int x, int y)
+{
+	event.call_mouse_listeners(button, state, x, y);
+}
+
+void on_key(unsigned char key, int x, int y)
+{
+	event.call_key_listeners(key);
+}
+
+void on_skey(int key, int x, int y)
+{
+	event.call_key_listeners(key);
 }

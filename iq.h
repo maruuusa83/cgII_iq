@@ -13,6 +13,10 @@ void init(int argc, char **argv);
 void world(void);
 void idle(void);
 
+void on_mouse(int button, int state, int x, int y);
+void on_key(unsigned char key, int x, int y);
+void on_skey(int key, int x, int y);
+
 MAT mat_normal_cube =
 	{
 		{0.9, 0.9, 0.9, 1.0},
