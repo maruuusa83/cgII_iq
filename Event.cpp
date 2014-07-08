@@ -41,6 +41,7 @@ void Event::call_skey_listeners(int key)
 int Event::add_mouse_listener(void *context, EventCallbackListener *listener)
 {
 	mouse_listeners.insert(make_pair(mouse_listeners_num, listener));
+	mouse_contexts.insert(make_pair(mouse_listeners_num, context));
 
 	mouse_listeners_num++;
 	return (mouse_listeners_num - 1);
@@ -49,6 +50,7 @@ int Event::add_mouse_listener(void *context, EventCallbackListener *listener)
 int Event::add_key_listener(void *context, EventCallbackListener *listener)
 {
 	key_listeners.insert(make_pair(key_listeners_num, listener));
+	key_contexts.insert(make_pair(key_listeners_num, context));
 
 	key_listeners_num++;
 	return (key_listeners_num - 1);
@@ -57,6 +59,7 @@ int Event::add_key_listener(void *context, EventCallbackListener *listener)
 int Event::add_skey_listener(void *context, EventCallbackListener *listener)
 {
 	skey_listeners.insert(make_pair(skey_listeners_num, listener));
+	skey_contexts.insert(make_pair(skey_listeners_num, context));
 
 	skey_listeners_num++;
 	return (skey_listeners_num - 1);
