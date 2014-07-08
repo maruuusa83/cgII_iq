@@ -14,6 +14,12 @@ class MyEventCallbackListener : public EventCallbackListener {
 public:
 	void onKey(void *context, unsigned char key)
 	{
+		float z, x;
+		Player *mPlayer = (Player *)context;
+		
+		mPlayer->get_pos(&z, &x);
+		mPlayer->set_pos(z += 1.0, x += 1.0);
+		
 		printf("KEY HIT\n");
 	}
 };

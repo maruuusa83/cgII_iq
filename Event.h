@@ -19,12 +19,17 @@ public:
 
 class Event {
 private:
+	/* コールバック種別のコールバックの数 */
 	int mouse_listeners_num;
 	int key_listeners_num;
 	int skey_listeners_num;
+	
+	/* コールバック関数 */
 	map<int, EventCallbackListener*> mouse_listeners;
 	map<int, EventCallbackListener*> key_listeners;
 	map<int, EventCallbackListener*> skey_listeners;
+	
+	/* コールバック関数に渡すコンテキスト */
 	map<int, void*> mouse_contexts;
 	map<int, void*> key_contexts;
 	map<int, void*> skey_contexts;
