@@ -25,6 +25,9 @@ private:
 	map<int, EventCallbackListener*> mouse_listeners;
 	map<int, EventCallbackListener*> key_listeners;
 	map<int, EventCallbackListener*> skey_listeners;
+	map<int, void*> mouse_contexts;
+	map<int, void*> key_contexts;
+	map<int, void*> skey_contexts;
 	
 public:
 	Event(void);
