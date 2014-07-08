@@ -126,8 +126,20 @@ int PuzzleCube::calc(void)
 		else {
 			m_rot = 0.0;
 			m_pos_z++;
+			
+			m_wait = 0;
+			m_state = STATE_WAIT_NEXT;
 		}
 		break;
+	
+	  case STATE_WAIT_NEXT:
+	  	if (m_wait > 40){
+			m_state = STATE_RUN;
+	  	}
+		else {
+			m_wait++;
+		}
+	  	break;
 	}
 	
 	return (0);
@@ -137,6 +149,7 @@ void PuzzleCube::draw(void)
 {
 	MAT mat;
 	
+	/* キューブの質感の設定 */
 	switch (m_kind){
 	  case CUBE_NORMAL:
 	  	mat = mat_normal_cube;
@@ -158,17 +171,26 @@ void PuzzleCube::draw(void)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   mat.ambient);
 	glMaterialf(GL_FRONT_AND_BACK,  GL_SHININESS, mat.shininess);
 	
+	/* 描画処理 */
 	glPushMatrix();
-	
-	float x = 1.0 * m_pos_x - 2.5;
-	float y = m_pos_y + ((sqrt((0.98 * 0.98) / 2.0) * sin(D2R(m_rot) + (PI / 4.0))) - (sqrt((0.98 * 0.98) / 2.0) * sin(PI / 4.0)));
-	float z = 1.0 * m_pos_z - 16.0 - ((sqrt((0.98 * 0.98) / 2.0) * cos(D2R(m_rot) + (PI / 4.0)))) - 0.5;
-	glTranslatef(x, y, z);
-	GL_Utility::polarview(0, 0, -m_rot, 0);
-	glutSolidCube(0.98);
+		/* 回転による変位を含む描画位置の決定 */
+		float x = 1.0 * m_pos_x - 2.5;
+		float y =	m_pos_y //現在のキューブのy方向の位置
+					+ ((sqrt((0.98 * 0.98) / 2.0) * sin(D2R(m_rot) + (PI / 4.0))) //現在の中心高さ
+					- (sqrt((0.98 * 0.98) / 2.0) * sin(PI / 4.0))); //面が床と接しているときの中心高さ
+		float z =	1.0 * m_pos_z - 16.0 //現在のキューブのz方向の位置
+					- ((sqrt((0.98 * 0.98) / 2.0) * cos(D2R(m_rot) + (PI / 4.0)))) - 0.5; //回転による-z方向へのズレ
+		glTranslatef(x, y, z);
+		
+		/* キューブの回転 */
+		GL_Utility::polarview(0, 0, -m_rot, 0);
+		
+		/* 少し小さ目のキューブを描画する */
+		glutSolidCube(0.98);
 	glPopMatrix();
 }
 
+/*** 以下ゲッタ・セッタ ***/
 void PuzzleCube::start_generate(void)
 {
 	m_state = STATE_GENERATE;

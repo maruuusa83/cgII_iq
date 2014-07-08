@@ -12,6 +12,7 @@
 #define STATE_GET_PUZZLE	(1)
 #define STATE_GENERATE		(2)
 #define STATE_RUN			(3)
+#define STATE_WAIT_NEXT		(4)
 
 extern MAT mat_normal_cube;
 extern MAT mat_forbidden_cube;
@@ -24,6 +25,8 @@ private:
 	int m_pos_z, m_pos_x;
 	float m_pos_y;
 	float m_rot;
+	
+	int m_wait;
 	
 public:
 	PuzzleCube(char kind, int pos_z, int pos_x);
