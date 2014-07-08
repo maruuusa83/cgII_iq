@@ -15,13 +15,16 @@ class PuzzleCube : public Object {
 private:
 	char m_kind;
 	int m_pos_z, m_pos_x;
-	int m_pos_y;
+	float m_pos_y;
 	
 public:
 	PuzzleCube(char kind, int pos_z, int pos_x);
 
 	void calc(void);
 	void draw(void);
+	
+	void set_pos_y(float pos_y);
+	float get_pos_y(void);
 };
 
 class Puzzle : public Object {
