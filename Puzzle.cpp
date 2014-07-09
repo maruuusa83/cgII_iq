@@ -140,6 +140,16 @@ int PuzzleCube::calc(void)
 			m_wait++;
 		}
 	  	break;
+	
+	  case STATE_DOWN:
+	  	if (m_pos_y > 0.0){
+			m_pos_y -= CUBE_DOWN_SPD;
+	  	}
+		else {
+			m_pos_y = -1.0;
+			m_state = STATE_STOP;
+		}
+		break;
 	}
 	
 	return (0);
@@ -199,6 +209,11 @@ void PuzzleCube::start_generate(void)
 void PuzzleCube::start_run(void)
 {
 	m_state = STATE_RUN;
+}
+
+void PuzzleCube::start_down(void)
+{
+	m_state = STATE_DOWN;
 }
 
 void PuzzleCube::set_pos_y(float pos_y)
