@@ -1,5 +1,7 @@
 #include "./Stage.h"
 
+
+/*** Stageクラスの定義 ***/
 Stage::Stage(void)
 {
 	for (int i = 0; i < 6; i++){
@@ -48,4 +50,18 @@ void Stage::draw()
 	}	
 	
 	glPopMatrix();
+}
+
+
+
+/*** StageCubeクラスの定義 ***/
+StageCube::StageCube(int pos_z, int pos_x)
+{
+	m_state = STAGE_STATE_NORMAL;
+	
+	m_kind_mark = NO_MARKER;
+	m_pos_z = pos_z;
+	m_pos_x = pos_x;
+	
+	m_bright = 0;
 }
