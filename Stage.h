@@ -36,7 +36,7 @@ public:
 
 class Stage : public Object {
 private:
-	char marker_map[6][32];
+	StageCube* marker_map[6][32];
 	
 public:
 	Stage(void);
