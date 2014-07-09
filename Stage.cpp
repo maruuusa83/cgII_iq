@@ -1,5 +1,14 @@
 #include "./Stage.h"
 
+Stage::Stage(void)
+{
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 32; j++){
+			marker_map[i][j] = NO_MARKER;
+		}
+	}
+}
+
 void Stage::calc(void)
 {
 	
