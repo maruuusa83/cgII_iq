@@ -14,6 +14,10 @@
 #define STATE_RUN			(3)
 #define STATE_WAIT_NEXT		(4)
 
+#define CUBE_GEN_SPD	(0.01 * (SPEED))
+#define CUBE_ROT_DEG	(0.7 * (SPEED))
+#define CUBE_WAIT_TIME	((int)(50.0 * (SPEED)))
+
 extern MAT mat_normal_cube;
 extern MAT mat_forbidden_cube;
 extern MAT mat_advantage_cube;
