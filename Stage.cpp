@@ -1,5 +1,26 @@
 #include "./Stage.h"
 
+MAT mat_red_cube =
+	{
+		{0.9, 0.4, 0.4, 1.0},
+		{0.9, 0.3, 0.3, 1.0},
+		{0.9, 0.4, 0.4, 1.0},
+		128.0
+	};
+MAT mat_blue_cube =
+	{
+		{0.2, 0.4, 0.7, 1.0},
+		{0.1, 0.3, 0.7, 1.0},
+		{0.2, 0.4, 0.7, 1.0},
+		128.0
+	};
+MAT mat_green_cube =
+	{
+		{0.4, 0.9, 0.4, 1.0},
+		{0.3, 0.9, 0.3, 1.0},
+		{0.4, 0.9, 0.4, 1.0},
+		128.0
+	};
 
 /*** Stageクラスの定義 ***/
 Stage::Stage(void)
@@ -104,8 +125,15 @@ void StageCube::draw(void)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   mat.ambient);
 	glMaterialf(GL_FRONT_AND_BACK,  GL_SHININESS, mat.shininess);
 	
+	/* 描画する処理 */
 	glPushMatrix();
 	glTranslatef(2.5 - m_pos_x, 0.0, -16.0 + m_pos_z); //右後ろに来るように移動
-	glutSolidCube(0.98);
+	glutSolidCube(0.98); //キューブの描画
+	
+	if (m_kind_mark != NO_MARKER){
+		glTranslatef(0.0, 1.9, 0.0);
+		glRotatef(90.0, 1.0, 0.0, 0.0);
+		glutSolidCone(0.08, 0.18, 12, 3);
+	}
 	glPopMatrix();
 }
