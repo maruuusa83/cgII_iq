@@ -31,9 +31,17 @@ void Stage::draw()
 	
 	/* ステージの描画処理 */
 	glPushMatrix();
+	for (i = 0; i < 32; i++){
+		for (j = 0; j < 6; j++){
+			marker_map[j][i]->draw();
+		}
+	}
+	glPopMatrix();
+	
+	glPushMatrix();
 	glTranslatef(2.5, 0.0, -16.0); //右後ろに来るように移動
-
-	for(k = 0; k < 6; k++){
+	glTranslatef(0.0, -1.0, 0.0);
+	for(k = 0; k < 5; k++){
 		glPushMatrix();
 		for (i = 0; i < 32; i++){ //右後ろから順番に１つずつ描画
 			glPushMatrix();
@@ -64,4 +72,18 @@ StageCube::StageCube(int pos_z, int pos_x)
 	m_pos_x = pos_x;
 	
 	m_bright = 0;
+}
+
+void StageCube::draw(void)
+{
+	/* シェーディングの設定 */
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE,   mat_normal_cube.diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR,  mat_normal_cube.specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   mat_normal_cube.ambient);
+	glMaterialf(GL_FRONT_AND_BACK,  GL_SHININESS, mat_normal_cube.shininess);
+	
+	glPushMatrix();
+	glTranslatef(2.5 - m_pos_x, 0.0, -16.0 + m_pos_z); //右後ろに来るように移動
+	glutSolidCube(0.98);
+	glPopMatrix();
 }
