@@ -5,6 +5,7 @@
 #include "./common.h"
 #include "./Object.h"
 #include "./Event.h"
+#include "./Stage.h"
 
 class Player : public Object {
 private:

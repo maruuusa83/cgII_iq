@@ -9,6 +9,7 @@ MAT mat_player =
 	};
 	
 extern Event *event;
+extern Stage *stage;
 
 class MyEventCallbackListener : public EventCallbackListener {
 public:
@@ -18,7 +19,12 @@ public:
 		Player *mPlayer = (Player *)context;
 		
 		mPlayer->get_pos(&z, &x);
-		mPlayer->set_pos(z += 0.01, x += 0.01);
+		if (key != 'j'){
+			mPlayer->set_pos(z += 0.01, x += 0.01);
+		}
+		else {
+			stage->set_marker(z, x);
+		}
 		
 		printf("KEY HIT\n");
 	}
