@@ -150,7 +150,7 @@ void StageCube::exp_marker(void)
 	m_state = STAGE_STATE_EXP;
 }
 
-char get_state(void)
+char StageCube::get_state(void)
 {
 	return (m_state);
 }
