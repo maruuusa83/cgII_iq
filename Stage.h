@@ -44,6 +44,7 @@ public:
 	void draw(void);
 	
 	void set_marker(float pos_z, float pos_x);
+	void exp_marker(void);
 };
 
 #endif

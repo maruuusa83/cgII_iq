@@ -90,6 +90,15 @@ void Stage::set_marker(float pos_z, float pos_x)
 	marker_map[t_pos_x][t_pos_z]->set_marker();
 }
 
+void Stage::exp_marker(void)
+{
+	for (int i = 0; i < 32; i++){
+		for (int j = 0; j < 6; j++){
+			marker_map[j][i]->exp_marker();
+		}
+	}
+}
+
 
 /*** StageCubeƒNƒ‰ƒX‚Ì’è‹` ***/
 StageCube::StageCube(int pos_z, int pos_x)
