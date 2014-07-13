@@ -82,6 +82,13 @@ void Stage::draw()
 	glPopMatrix();
 }
 
+void Stage::set_marker(float pos_z, float pos_x)
+{
+	int t_pos_z = (int)(pos_z - 16);
+	int t_pos_x = (int)(pos_x + 2.5);
+	
+	marker_map[t_pos_x][t_pos_z]->set_marker();
+}
 
 
 /*** StageCubeƒNƒ‰ƒX‚Ì’è‹` ***/
@@ -136,4 +143,21 @@ void StageCube::draw(void)
 		glutSolidCone(0.08, 0.18, 12, 3);
 	}
 	glPopMatrix();
+}
+
+void StageCube::set_marker(void)
+{
+	m_kind_mark = MARKER_BLUE;
+	m_state = STAGE_STATE_SET;
+}
+
+void StageCube::exp_marker(void)
+{
+	m_kind_mark = MARKER_RED;
+	m_state = STAGE_STATE_EXP;
+}
+
+char StageCube::get_state(void)
+{
+	return (m_state);
 }

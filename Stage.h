@@ -42,6 +42,8 @@ public:
 	Stage(void);
 	void calc(void);
 	void draw(void);
+	
+	void set_marker(float pos_z, float pos_x);
 };
 
 #endif
