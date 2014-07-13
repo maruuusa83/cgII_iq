@@ -23,7 +23,7 @@ public:
 			mPlayer->set_pos(z += 0.01, x += 0.01);
 		}
 		else {
-			stage->set_marker(z, x);
+			stage->player_marker(z, x);
 		}
 		
 		printf("KEY HIT\n");

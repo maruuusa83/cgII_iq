@@ -30,6 +30,8 @@ Stage::Stage(void)
 			marker_map[i][j] = new StageCube(j, i);
 		}
 	}
+	
+	m_player_marker_flag = FALSE;
 }
 
 void Stage::calc(void)
@@ -89,7 +91,6 @@ void Stage::set_marker(float pos_z, float pos_x)
 	
 	marker_map[t_pos_x][t_pos_z]->set_marker();
 }
-
 void Stage::exp_marker(void)
 {
 	for (int i = 0; i < 32; i++){
@@ -98,10 +99,14 @@ void Stage::exp_marker(void)
 		}
 	}
 }
-
 void Stage::player_marker(float pos_z, float pos_x)
 {
-	
+	if (m_player_marker_flag == FALSE){
+		set_marker(pos_z, pos_x);
+	}
+	else {
+		exp_marker();
+	}
 }
 
 void Stage::set_adv_marker(float pos_z, float pos_x)
