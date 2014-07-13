@@ -137,3 +137,13 @@ void StageCube::draw(void)
 	}
 	glPopMatrix();
 }
+
+void StageCube::set_marker(void)
+{
+	
+}
+
+void StageCube::exp_marker(void)
+{
+	
+}
