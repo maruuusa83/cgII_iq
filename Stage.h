@@ -29,7 +29,7 @@ public:
 	void calc(void);
 	void draw(void);
 	
-	void set_marker(void);
+	void set_marker(int type);
 	void exp_marker(void);
 	char get_state(void);
 };
@@ -39,7 +39,7 @@ private:
 	StageCube* marker_map[6][32];
 	int m_player_marker_flag;
 	
-	void set_marker(float pos_z, float pos_x);
+	void set_marker(int type, float pos_z, float pos_x);
 	void exp_marker(void);
 	
 public:
