@@ -17,8 +17,13 @@ public:
 		float z, x;
 		Player *mPlayer = (Player *)context;
 		
-		mPlayer->get_pos(&z, &x);
-		mPlayer->set_pos(z += 0.01, x += 0.01);
+		if (key != 'j'){
+			mPlayer->get_pos(&z, &x);
+			mPlayer->set_pos(z += 0.01, x += 0.01);
+		}
+		else {
+			
+		}
 		
 		printf("KEY HIT\n");
 	}
