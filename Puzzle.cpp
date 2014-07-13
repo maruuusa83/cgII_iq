@@ -140,6 +140,16 @@ int PuzzleCube::calc(void)
 			m_wait++;
 		}
 	  	break;
+	
+	  case STATE_DOWN:
+	  	if (m_pos_y > 0.0){
+			m_pos_y -= CUBE_DOWN_SPD;
+	  	}
+		else {
+			m_pos_y = -1.0;
+			m_state = STATE_STOP;
+		}
+		break;
 	}
 	
 	return (0);
@@ -178,7 +188,7 @@ void PuzzleCube::draw(void)
 		float y =	m_pos_y //現在のキューブのy方向の位置
 					+ ((sqrt((0.98 * 0.98) / 2.0) * sin(D2R(m_rot) + (PI / 4.0))) //現在の中心高さ
 					- (sqrt((0.98 * 0.98) / 2.0) * sin(PI / 4.0))); //面が床と接しているときの中心高さ
-		float z =	1.0 * m_pos_z - 16.0 //現在のキューブのz方向の位置
+		float z =	1.0 * m_pos_z - 15.0 //現在のキューブのz方向の位置
 					- ((sqrt((0.98 * 0.98) / 2.0) * cos(D2R(m_rot) + (PI / 4.0)))) - 0.5; //回転による-z方向へのズレ
 		glTranslatef(x, y, z);
 		
@@ -199,6 +209,11 @@ void PuzzleCube::start_generate(void)
 void PuzzleCube::start_run(void)
 {
 	m_state = STATE_RUN;
+}
+
+void PuzzleCube::start_down(void)
+{
+	m_state = STATE_DOWN;
 }
 
 void PuzzleCube::set_pos_y(float pos_y)
