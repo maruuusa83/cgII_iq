@@ -99,6 +99,21 @@ void Stage::exp_marker(void)
 	}
 }
 
+void Stage::player_marker(float pos_z, float pos_x)
+{
+	
+}
+
+void Stage::set_adv_marker(float pos_z, float pos_x)
+{
+	
+}
+
+void Stage::exp_adv_marker(void)
+{
+	
+}
+
 
 /*** StageCubeƒNƒ‰ƒX‚Ì’è‹` ***/
 StageCube::StageCube(int pos_z, int pos_x)

@@ -45,6 +45,10 @@ public:
 	
 	void set_marker(float pos_z, float pos_x);
 	void exp_marker(void);
+	
+	void player_marker(float pos_z, float pos_x);
+	void set_adv_marker(float pos_z, float pos_x);
+	void exp_adv_marker(void);
 };
 
 #endif
