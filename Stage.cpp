@@ -84,8 +84,8 @@ void Stage::draw()
 
 void Stage::set_marker(float pos_z, float pos_x)
 {
-	int t_pos_z = (int)(pos_z - 16);
-	int t_pos_x = (int)(pos_x + 2.5);
+	int t_pos_z = (int)(pos_z - 16.5);
+	int t_pos_x = (int)(pos_x + 3.0);
 	
 	marker_map[t_pos_x][t_pos_z]->set_marker();
 }
