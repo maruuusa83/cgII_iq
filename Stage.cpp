@@ -140,10 +140,17 @@ void StageCube::draw(void)
 
 void StageCube::set_marker(void)
 {
-	
+	m_kind_mark = MARKER_BLUE;
+	m_state = STAGE_STATE_SET;
 }
 
 void StageCube::exp_marker(void)
 {
-	
+	m_kind_mark = MARKER_RED;
+	m_state = STAGE_STATE_EXP;
+}
+
+char get_state(void)
+{
+	return (m_state);
 }
