@@ -13,8 +13,10 @@
 #define STATE_GENERATE		(2)
 #define STATE_RUN			(3)
 #define STATE_WAIT_NEXT		(4)
+#define STATE_DOWN			(5)
 
 #define CUBE_GEN_SPD	(0.01 * (SPEED))
+#define CUBE_DOWN_SPD	(CUBE_GEN_SPD)
 #define CUBE_ROT_DEG	(0.7 * (SPEED))
 #define CUBE_WAIT_TIME	((int)(50.0 * (SPEED)))
 
@@ -40,6 +42,7 @@ public:
 	
 	void start_generate(void);
 	void start_run(void);
+	void start_down(void);
 	
 	void set_pos_y(float pos_y);
 	float get_pos_y(void);
