@@ -24,6 +24,9 @@
 #define PI (3.141592653)
 #define D2R(deg) (((2.0 * (PI)) / 360.0) * (deg))
 
+#define FALSE (0)
+#define TRUE  (1)
+
 /* 各キューブの質感の設定 */
 typedef struct _mat
 {
