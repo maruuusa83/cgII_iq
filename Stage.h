@@ -14,6 +14,10 @@
 #define STAGE_STATE_SET		(1)
 #define STAGE_STATE_EXP		(2)
 
+#define FIN_TIME_EXP (50)
+
+#define STAGE_CUBE_TIME_INFTY ((unsigned char)(255))
+
 extern MAT mat_normal_cube;
 
 class StageCube {
@@ -21,7 +25,7 @@ private:
 	char m_state;
 	char m_kind_mark;
 	int m_pos_z, m_pos_x;
-	char m_bright;
+	unsigned char m_time;
 	
 public:
 	StageCube(int pos_z, int pos_x);

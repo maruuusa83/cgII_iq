@@ -19,11 +19,11 @@ public:
 		Player *mPlayer = (Player *)context;
 		
 		mPlayer->get_pos(&z, &x);
-		if (key != 'j'){
-			mPlayer->set_pos(z += 0.01, x += 0.01);
+		if (key == 'j'){
+			stage->player_marker(z, x);
 		}
 		else {
-			stage->player_marker(z, x);
+			mPlayer->set_pos(z += 0.01, x += 0.01);
 		}
 		
 		printf("KEY HIT\n");
