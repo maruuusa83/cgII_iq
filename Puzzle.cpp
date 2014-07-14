@@ -1,5 +1,7 @@
 #include "./Puzzle.h"
 
+extern Stage *stage;
+
 /*** PuzzleƒNƒ‰ƒX‚Ì’è‹` ***/
 Puzzle::Puzzle(void)
 {
@@ -107,7 +109,12 @@ PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 
 void PuzzleCube::check_marker(void)
 {
+	//printf("%d %d\n", m_pos_z, m_pos_x);
+	char marker = stage->get_marker(m_pos_z, m_pos_x);
 	
+	if (marker == MARKER_RED){
+		
+	}
 }
 
 int PuzzleCube::calc(void)

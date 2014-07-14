@@ -127,10 +127,7 @@ void Stage::exp_adv_marker(void)
 
 char Stage::get_marker(float pos_z, float pos_x)
 {
-	int t_pos_z = (int)(pos_z - 16.5);
-	int t_pos_x = (int)(pos_x + 3.0);
-	
-	return (marker_map[t_pos_x][t_pos_z]->get_marker());
+	return (marker_map[(int)pos_x][(int)pos_z]->get_marker());
 }
 
 

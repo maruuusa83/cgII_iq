@@ -5,6 +5,8 @@
 #include "./common.h"
 #include "./Object.h"
 
+#include <stdio.h>
+
 #define NO_MARKER		(0)
 #define MARKER_BLUE		(1)
 #define MARKER_RED		(2)

@@ -5,6 +5,7 @@
 #include "./common.h"
 #include "./Object.h"
 #include "./GL_Utility.h"
+#include "./Stage.h"
 
 #include <stdio.h>
 
