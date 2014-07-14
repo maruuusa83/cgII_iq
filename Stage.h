@@ -36,6 +36,7 @@ public:
 	void set_marker(int type);
 	void exp_marker(void);
 	char get_state(void);
+	char get_marker(void);
 };
 
 class Stage : public Object {
@@ -51,10 +52,10 @@ public:
 	void calc(void);
 	void draw(void);
 	
-	
 	void player_marker(float pos_z, float pos_x);
 	void set_adv_marker(float pos_z, float pos_x);
 	void exp_adv_marker(void);
+	char get_marker(float pos_z, float pox_x);
 };
 
 #endif
