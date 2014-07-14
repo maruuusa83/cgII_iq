@@ -36,7 +36,9 @@ private:
 	
 public:
 	PuzzleCube(char kind, int pos_z, int pos_x);
-
+	
+	void check_marker(void);
+	
 	int calc(void);
 	void draw(void);
 	
@@ -60,8 +62,6 @@ public:
 	
 	void calc(void);
 	void draw(void);
-	
-	void get_cube(float pos_z, float pos_x); //キューブを捕獲するときに呼び出す
 	
 	void get_puzzle(void);
 	void generate(void);

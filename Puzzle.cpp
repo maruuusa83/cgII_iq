@@ -92,12 +92,6 @@ void Puzzle::run(void)
 	}
 }
 
-void Puzzle::get_cube(float pos_z, float pos_x)
-{
-	
-}
-
-
 /*** PuzzleCubeクラスの定義 ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
@@ -109,6 +103,11 @@ PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 	
 	m_pos_y = -0.01; //0.0にしていると微妙に見えるので少し下げる
 	m_rot = 0.0;
+}
+
+void PuzzleCube::check_marker(void)
+{
+	
 }
 
 int PuzzleCube::calc(void)
@@ -131,6 +130,8 @@ int PuzzleCube::calc(void)
 		else {
 			m_rot = 0.0;
 			m_pos_z++;
+			
+			check_marker(); //床が赤マーカかどうかチェックする
 			
 			m_wait = 0;
 			m_state = STATE_WAIT_NEXT; //一時停止する
