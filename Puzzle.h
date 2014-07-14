@@ -61,6 +61,8 @@ public:
 	void calc(void);
 	void draw(void);
 	
+	void get_cube(float pos_z, float pos_x); //キューブを捕獲するときに呼び出す
+	
 	void get_puzzle(void);
 	void generate(void);
 	void run(void);

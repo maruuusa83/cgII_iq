@@ -92,6 +92,11 @@ void Puzzle::run(void)
 	}
 }
 
+void Puzzle::get_cube(float pos_z, float pos_x)
+{
+	
+}
+
 
 /*** PuzzleCubeƒNƒ‰ƒX‚Ì’è‹` ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
