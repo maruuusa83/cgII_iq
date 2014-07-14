@@ -30,6 +30,8 @@ Stage::Stage(void)
 			marker_map[i][j] = new StageCube(j, i);
 		}
 	}
+	
+	m_player_marker_flag = FALSE;
 }
 
 void Stage::calc(void)
@@ -82,12 +84,39 @@ void Stage::draw()
 	glPopMatrix();
 }
 
-void Stage::set_marker(float pos_z, float pos_x)
+void Stage::set_marker(int type, float pos_z, float pos_x)
 {
-	int t_pos_z = (int)(pos_z - 16);
-	int t_pos_x = (int)(pos_x + 2.5);
+	int t_pos_z = (int)(pos_z - 16.5);
+	int t_pos_x = (int)(pos_x + 3.0);
 	
-	marker_map[t_pos_x][t_pos_z]->set_marker();
+	marker_map[t_pos_x][t_pos_z]->set_marker(MARKER_BLUE);
+}
+void Stage::exp_marker(void)
+{
+	for (int i = 0; i < 32; i++){
+		for (int j = 0; j < 6; j++){
+			marker_map[j][i]->exp_marker();
+		}
+	}
+}
+void Stage::player_marker(float pos_z, float pos_x)
+{
+	if (m_player_marker_flag == FALSE){
+		set_marker(MARKER_BLUE, pos_z, pos_x);
+	}
+	else {
+		exp_marker();
+	}
+}
+
+void Stage::set_adv_marker(float pos_z, float pos_x)
+{
+	
+}
+
+void Stage::exp_adv_marker(void)
+{
+	
 }
 
 
@@ -145,10 +174,20 @@ void StageCube::draw(void)
 	glPopMatrix();
 }
 
-void StageCube::set_marker(void)
+void StageCube::set_marker(int type)
 {
-	m_kind_mark = MARKER_BLUE;
-	m_state = STAGE_STATE_SET;
+	m_kind_mark = type;
+	
+	switch (type){
+	  case MARKER_BLUE:
+	  case MARKER_GREEN:
+		m_state = STAGE_STATE_SET;
+		break;
+		
+	  case MARKER_RED:
+	  	m_state = STAGE_STATE_EXP;
+		break;
+	}
 }
 
 void StageCube::exp_marker(void)
