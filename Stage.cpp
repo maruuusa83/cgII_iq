@@ -103,9 +103,11 @@ void Stage::player_marker(float pos_z, float pos_x)
 {
 	if (m_player_marker_flag == FALSE){
 		set_marker(MARKER_BLUE, pos_z, pos_x);
+		m_player_marker_flag = TRUE;
 	}
 	else {
 		exp_marker();
+		m_player_marker_flag = FALSE;
 	}
 }
 
@@ -192,8 +194,10 @@ void StageCube::set_marker(int type)
 
 void StageCube::exp_marker(void)
 {
-	m_kind_mark = MARKER_RED;
-	m_state = STAGE_STATE_EXP;
+	if (m_kind_mark == MARKER_BLUE || m_kind_mark == MARKER_GREEN){
+		m_kind_mark = MARKER_RED;
+		m_state = STAGE_STATE_EXP;
+	}
 }
 
 char StageCube::get_state(void)
