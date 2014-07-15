@@ -99,7 +99,7 @@ void Stage::exp_marker(void)
 {
 	for (int i = 0; i < 32; i++){
 		for (int j = 0; j < 6; j++){
-			marker_map[j][i]->exp_marker();
+			marker_map[j][i]->exp_nml_marker();
 		}
 	}
 }
@@ -232,9 +232,9 @@ void StageCube::set_marker(int type)
 	}
 }
 
-void StageCube::exp_marker(void)
+void StageCube::exp_nml_marker(void)
 {
-	if (m_kind_mark == MARKER_BLUE || m_kind_mark == MARKER_GREEN){
+	if (m_kind_mark == MARKER_BLUE){
 		m_kind_mark = MARKER_RED;
 		m_state = STAGE_STATE_EXP;
 		m_time = 0;

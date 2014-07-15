@@ -36,7 +36,7 @@ public:
 	void draw(void);
 	
 	void set_marker(int type);
-	void exp_marker(void);
+	void exp_nml_marker(void);
 	char get_state(void);
 	char get_marker(void);
 };
