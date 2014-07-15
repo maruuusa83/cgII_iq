@@ -129,10 +129,11 @@ void Stage::exp_adv_marker(void)
 				for (int k = -1; k <= 1; k++){
 					for (int l = -1; l <= 1; l++){
 						if ((0 <= j + k && j + k < 6) && (0 <= i + l && i + l < 32)){
-							marker_map[j][i]->exp_marker();
+							marker_map[j + k][i + l]->exp_marker();
 						}
 					}
 				}
+				
 			}
 		}
 	}
