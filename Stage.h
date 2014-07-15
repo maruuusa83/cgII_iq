@@ -37,8 +37,10 @@ public:
 	
 	void set_marker(int type);
 	void exp_nml_marker(void);
+	void exp_marker(void);
 	char get_state(void);
 	char get_marker(void);
+	char get_kind_mark(void);
 };
 
 class Stage : public Object {

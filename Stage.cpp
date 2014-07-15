@@ -122,7 +122,20 @@ void Stage::set_adv_marker(float pos_z, float pos_x)
 
 void Stage::exp_adv_marker(void)
 {
-	
+	for (int i = 0; i < 32; i++){
+		for (int j = 0; j < 6; j++){
+			if (marker_map[j][i]->get_kind_mark() == MARKER_GREEN){
+				
+				for (int k = -1; k <= 1; k++){
+					for (int l = -1; l <= 1; l++){
+						if ((0 <= j + k && j + k < 6) && (0 <= i + l && i + l < 32)){
+							marker_map[j][i]->exp_marker();
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 char Stage::get_marker(float pos_z, float pos_x)
@@ -232,6 +245,13 @@ void StageCube::set_marker(int type)
 	}
 }
 
+void StageCube::exp_marker(void)
+{
+	m_kind_mark = MARKER_RED;
+	m_state = STAGE_STATE_EXP;
+	m_time = 0;
+}
+
 void StageCube::exp_nml_marker(void)
 {
 	if (m_kind_mark == MARKER_BLUE){
@@ -244,4 +264,9 @@ void StageCube::exp_nml_marker(void)
 char StageCube::get_state(void)
 {
 	return (m_state);
+}
+
+char StageCube::get_kind_mark(void)
+{
+	return (m_kind_mark);
 }
