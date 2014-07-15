@@ -113,7 +113,7 @@ void PuzzleCube::check_marker(void)
 	char marker = stage->get_marker(m_pos_z, m_pos_x);
 	
 	if (marker == MARKER_RED){
-		
+		m_state = STATE_DOWN;
 	}
 }
 
@@ -140,13 +140,16 @@ int PuzzleCube::calc(void)
 			
 			check_marker(); //床が赤マーカかどうかチェックする
 			
-			m_wait = 0;
-			m_state = STATE_WAIT_NEXT; //一時停止する
+			if (m_state != STATE_DOWN){
+				m_wait = 0;
+				m_state = STATE_WAIT_NEXT; //一時停止する
+			}
 		}
 		break;
 	
 	  case STATE_WAIT_NEXT: //一時停止している状態
 	  	if (m_wait > CUBE_WAIT_TIME){
+			m_wait = 0;
 			m_state = STATE_RUN;
 	  	}
 		else {
