@@ -7,6 +7,11 @@ Camera::Camera(float x, float y, float z)
 	mz = z;
 }
 
+void Camera::calc(void)
+{
+	
+}
+
 void Camera::get_pos(float *x, float *y, float *z)
 {
 	*x = mx;

@@ -113,6 +113,7 @@ void idle(void)
 	player->calc();
 	stage->calc();
 	puzzle->calc();
+	camera->calc();
 	
 	
 	glutPostRedisplay(); /* Ä•`‰æ‚ÌŒÄ‚Ño‚µ */
