@@ -95,7 +95,7 @@ void Stage::set_marker(int type, float pos_z, float pos_x)
 	
 	marker_map[t_pos_x][t_pos_z]->set_marker(type);
 }
-void Stage::exp_marker(void)
+void Stage::exp_nml_marker(void)
 {
 	for (int i = 0; i < 32; i++){
 		for (int j = 0; j < 6; j++){
@@ -110,7 +110,7 @@ void Stage::player_marker(float pos_z, float pos_x)
 		m_player_marker_flag = TRUE;
 	}
 	else {
-		exp_marker();
+		exp_nml_marker();
 		m_player_marker_flag = FALSE;
 	}
 }

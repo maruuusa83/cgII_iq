@@ -47,7 +47,7 @@ private:
 	int m_player_marker_flag;
 	
 	void set_marker(int type, float pos_z, float pos_x);
-	void exp_marker(void);
+	void exp_nml_marker(void);
 	
 public:
 	Stage(void);
