@@ -12,6 +12,14 @@ void Camera::calc(void)
 	
 }
 
+void Camera::get_pos(float *distance, float *twist, float *elevation, float *azimuth)
+{
+	*distance = m_distance;
+	*twist = m_twist;
+	*elevation = m_elevation;
+	*azimuth = m_azimuth;
+}
+
 void Camera::get_pos2(float *x, float *y, float *z)
 {
 	*x = mx;
