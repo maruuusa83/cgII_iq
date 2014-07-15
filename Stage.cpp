@@ -200,7 +200,7 @@ void StageCube::draw(void)
 	
 	/* 描画する処理 */
 	glPushMatrix();
-	glTranslatef(2.5 - m_pos_x, 0.0, -16.0 + m_pos_z); //右後ろに来るように移動
+	glTranslatef(m_pos_x - 2.5, 0.0, m_pos_z - 16.0); //右後ろに来るように移動
 	glutSolidCube(0.98); //キューブの描画
 	
 	if (m_kind_mark != NO_MARKER){
