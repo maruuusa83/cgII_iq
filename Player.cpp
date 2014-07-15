@@ -20,7 +20,7 @@ public:
 		
 		mPlayer->get_pos(&z, &x);
 		if (key == 'j'){
-			stage->player_marker(z, x);
+			stage->player_marker(z - 16.5, x + 3.0);
 		}
 		else {
 			mPlayer->set_pos(z += 0.01, x += 0.01);

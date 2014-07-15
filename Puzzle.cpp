@@ -162,6 +162,9 @@ int PuzzleCube::calc(void)
 			m_pos_y -= CUBE_DOWN_SPD;
 	  	}
 		else {
+			if (m_kind == CUBE_ADVANTAGE){
+				stage->set_adv_marker(m_pos_z, m_pos_x);
+			}
 			m_pos_y = -1.0;
 			m_state = STATE_STOP;
 		}

@@ -90,10 +90,10 @@ void Stage::draw()
 
 void Stage::set_marker(int type, float pos_z, float pos_x)
 {
-	int t_pos_z = (int)(pos_z - 16.5);
-	int t_pos_x = (int)(pos_x + 3.0);
+	int t_pos_z = (int)(pos_z);
+	int t_pos_x = (int)(pos_x);
 	
-	marker_map[t_pos_x][t_pos_z]->set_marker(MARKER_BLUE);
+	marker_map[t_pos_x][t_pos_z]->set_marker(type);
 }
 void Stage::exp_marker(void)
 {
@@ -117,7 +117,7 @@ void Stage::player_marker(float pos_z, float pos_x)
 
 void Stage::set_adv_marker(float pos_z, float pos_x)
 {
-	
+	set_marker(MARKER_GREEN, pos_z, pos_x);
 }
 
 void Stage::exp_adv_marker(void)
@@ -158,14 +158,19 @@ void StageCube::calc(void)
 				m_state = STAGE_STATE_NORMAL;
 				m_kind_mark = NO_MARKER;
 		  	}
+			else {
+				m_time++;
+			}
 			break;
+			
+		  case STAGE_STATE_SET:
+		  	break;
 		
 		  default:
 		  	m_time = STAGE_CUBE_TIME_INFTY;
 			m_state = STAGE_STATE_NORMAL;
 			m_kind_mark = NO_MARKER;
 		}
-		m_time++;
 	}
 }
 
