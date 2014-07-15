@@ -13,7 +13,7 @@ public:
 	Camera(float x, float y, float z);
 	
 	void calc(void);
-	void get_pos(float *x, float *y, float *z);
+	void get_pos2(float *x, float *y, float *z);
 };
 
 

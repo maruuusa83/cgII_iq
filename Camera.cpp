@@ -12,7 +12,7 @@ void Camera::calc(void)
 	
 }
 
-void Camera::get_pos(float *x, float *y, float *z)
+void Camera::get_pos2(float *x, float *y, float *z)
 {
 	*x = mx;
 	*y = my;
