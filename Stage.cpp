@@ -90,10 +90,10 @@ void Stage::draw()
 
 void Stage::set_marker(int type, float pos_z, float pos_x)
 {
-	int t_pos_z = (int)(pos_z - 16.5);
-	int t_pos_x = (int)(pos_x + 3.0);
+	int t_pos_z = (int)(pos_z);
+	int t_pos_x = (int)(pos_x);
 	
-	marker_map[t_pos_x][t_pos_z]->set_marker(MARKER_BLUE);
+	marker_map[t_pos_x][t_pos_z]->set_marker(type);
 }
 void Stage::exp_marker(void)
 {
@@ -117,7 +117,7 @@ void Stage::player_marker(float pos_z, float pos_x)
 
 void Stage::set_adv_marker(float pos_z, float pos_x)
 {
-	
+	set_marker(MARKER_GREEN, pos_z, pos_x);
 }
 
 void Stage::exp_adv_marker(void)
@@ -158,14 +158,19 @@ void StageCube::calc(void)
 				m_state = STAGE_STATE_NORMAL;
 				m_kind_mark = NO_MARKER;
 		  	}
+			else {
+				m_time++;
+			}
 			break;
+			
+		  case STAGE_STATE_SET:
+		  	break;
 		
 		  default:
 		  	m_time = STAGE_CUBE_TIME_INFTY;
 			m_state = STAGE_STATE_NORMAL;
 			m_kind_mark = NO_MARKER;
 		}
-		m_time++;
 	}
 }
 
@@ -200,7 +205,7 @@ void StageCube::draw(void)
 	
 	/* 描画する処理 */
 	glPushMatrix();
-	glTranslatef(2.5 - m_pos_x, 0.0, -16.0 + m_pos_z); //右後ろに来るように移動
+	glTranslatef(m_pos_x - 2.5, 0.0, m_pos_z - 16.0); //右後ろに来るように移動
 	glutSolidCube(0.98); //キューブの描画
 	
 	if (m_kind_mark != NO_MARKER){
