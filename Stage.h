@@ -36,9 +36,11 @@ public:
 	void draw(void);
 	
 	void set_marker(int type);
+	void exp_nml_marker(void);
 	void exp_marker(void);
 	char get_state(void);
 	char get_marker(void);
+	char get_kind_mark(void);
 };
 
 class Stage : public Object {
@@ -47,7 +49,7 @@ private:
 	int m_player_marker_flag;
 	
 	void set_marker(int type, float pos_z, float pos_x);
-	void exp_marker(void);
+	void exp_nml_marker(void);
 	
 public:
 	Stage(void);

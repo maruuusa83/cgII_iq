@@ -22,6 +22,9 @@ public:
 		if (key == 'j'){
 			stage->player_marker(z - 16.5, x + 3.0);
 		}
+		else if (key == 'k'){
+			stage->exp_adv_marker();
+		}
 		else {
 			mPlayer->set_pos(z += 0.01, x += 0.01);
 		}
