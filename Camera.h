@@ -15,7 +15,6 @@ public:
 	
 	void calc(void);
 	void get_pos(float *distance, float *twist, float *elevation, float *azimuth);
-	void get_pos2(float *x, float *y, float *z);
 };
 
 
