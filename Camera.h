@@ -3,6 +3,7 @@
 
 
 #include "./common.h"
+#include "./Player.h"
 
 class Camera
 {

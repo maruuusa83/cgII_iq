@@ -58,7 +58,11 @@ void world(void)
 	float x, y, z;
 	float distance, twist, elevation, azimuth;
 	camera->get_pos(&distance, &twist, &elevation, &azimuth);
-	GL_Utility::polarview(distance, twist, elevation, azimuth);
+	GL_Utility::polarview(distance, twist, elevation, azimuth); //角度とプレイヤーからの距離の設定
+	
+	player->get_pos(&z, &x);
+	glTranslatef(-x, 0.0, -z); //プレイヤーを中心にする設定
+	
 	
 	/* ステージ位置の調整 */
 	glTranslatef(0.0, 0.0, 0.0); //プレイヤーのx方向の位置に合わせる

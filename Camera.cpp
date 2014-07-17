@@ -1,5 +1,7 @@
 #include "./Camera.h"
 
+extern Player *player;
+
 Camera::Camera(float x, float y, float z)
 {
 	mx = x;
