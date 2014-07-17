@@ -56,7 +56,9 @@ void world(void)
 	/* TODO: GL_Utilityにmove_pos関数の追加           */
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
-	camera->get_pos2(&x, &y, &z);
+	float distance, twist, elevation, azimtu;
+	camera->get_pos(&distance, &twist, &elevation, &azimtu);
+	//camera->get_pos2(&x, &y, &z);
 	GL_Utility::polarview(20, -5, -25, 45);
 	
 	/* ステージ位置の調整 */
