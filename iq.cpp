@@ -56,8 +56,9 @@ void world(void)
 	/* TODO: GL_Utilityにmove_pos関数の追加           */
 	/* polarviewでやると気持ち悪いのでラッパつくる    */
 	float x, y, z;
-	camera->get_pos(&x, &y, &z);
-	GL_Utility::polarview(20, -5, -25, 45);
+	float distance, twist, elevation, azimuth;
+	camera->get_pos(&distance, &twist, &elevation, &azimuth);
+	GL_Utility::polarview(distance, twist, elevation, azimuth);
 	
 	/* ステージ位置の調整 */
 	glTranslatef(0.0, 0.0, 0.0); //プレイヤーのx方向の位置に合わせる
@@ -113,6 +114,7 @@ void idle(void)
 	player->calc();
 	stage->calc();
 	puzzle->calc();
+	camera->calc();
 	
 	
 	glutPostRedisplay(); /* 再描画の呼び出し */
