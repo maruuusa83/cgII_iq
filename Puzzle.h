@@ -5,6 +5,7 @@
 #include "./common.h"
 #include "./Object.h"
 #include "./GL_Utility.h"
+#include "./Stage.h"
 
 #include <stdio.h>
 
@@ -13,10 +14,12 @@
 #define STATE_GENERATE		(2)
 #define STATE_RUN			(3)
 #define STATE_WAIT_NEXT		(4)
+#define STATE_DOWN			(5)
 
 #define CUBE_GEN_SPD	(0.01 * (SPEED))
+#define CUBE_DOWN_SPD	(CUBE_GEN_SPD * (0.8))
 #define CUBE_ROT_DEG	(0.7 * (SPEED))
-#define CUBE_WAIT_TIME	((int)(50.0 * (SPEED)))
+#define CUBE_WAIT_TIME	((int)(45.0 * (1.0 / (SPEED))))
 
 extern MAT mat_normal_cube;
 extern MAT mat_forbidden_cube;
@@ -34,12 +37,15 @@ private:
 	
 public:
 	PuzzleCube(char kind, int pos_z, int pos_x);
-
+	
+	void check_marker(void);
+	
 	int calc(void);
 	void draw(void);
 	
 	void start_generate(void);
 	void start_run(void);
+	void start_down(void);
 	
 	void set_pos_y(float pos_y);
 	float get_pos_y(void);

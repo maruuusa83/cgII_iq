@@ -1,5 +1,7 @@
 #include "./Puzzle.h"
 
+extern Stage *stage;
+
 /*** Puzzleクラスの定義 ***/
 Puzzle::Puzzle(void)
 {
@@ -92,7 +94,6 @@ void Puzzle::run(void)
 	}
 }
 
-
 /*** PuzzleCubeクラスの定義 ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
@@ -104,6 +105,19 @@ PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 	
 	m_pos_y = -0.01; //0.0にしていると微妙に見えるので少し下げる
 	m_rot = 0.0;
+}
+
+void PuzzleCube::check_marker(void)
+{
+	//printf("%d %d\n", m_pos_z, m_pos_x);
+	char marker = stage->get_marker(m_pos_z, m_pos_x);
+	
+	if (marker == MARKER_RED){
+		m_state = STATE_DOWN;
+		if (m_kind == CUBE_ADVANTAGE){ //アドバンテージキューブが爆破された場合、床にマーキング
+				stage->set_adv_marker(m_pos_z, m_pos_x);
+		}
+	}
 }
 
 int PuzzleCube::calc(void)
@@ -127,19 +141,34 @@ int PuzzleCube::calc(void)
 			m_rot = 0.0;
 			m_pos_z++;
 			
-			m_wait = 0;
-			m_state = STATE_WAIT_NEXT; //一時停止する
+			check_marker(); //床が赤マーカかどうかチェックする
+			
+			if (m_state != STATE_DOWN){
+				m_wait = 0;
+				m_state = STATE_WAIT_NEXT; //一時停止する
+			}
 		}
 		break;
 	
 	  case STATE_WAIT_NEXT: //一時停止している状態
 	  	if (m_wait > CUBE_WAIT_TIME){
+			m_wait = 0;
 			m_state = STATE_RUN;
 	  	}
 		else {
 			m_wait++;
 		}
 	  	break;
+	
+	  case STATE_DOWN:
+	  	if (m_pos_y > 0.0){
+			m_pos_y -= CUBE_DOWN_SPD;
+	  	}
+		else {
+			m_pos_y = -1.0;
+			m_state = STATE_STOP;
+		}
+		break;
 	}
 	
 	return (0);
@@ -178,7 +207,7 @@ void PuzzleCube::draw(void)
 		float y =	m_pos_y //現在のキューブのy方向の位置
 					+ ((sqrt((0.98 * 0.98) / 2.0) * sin(D2R(m_rot) + (PI / 4.0))) //現在の中心高さ
 					- (sqrt((0.98 * 0.98) / 2.0) * sin(PI / 4.0))); //面が床と接しているときの中心高さ
-		float z =	1.0 * m_pos_z - 16.0 //現在のキューブのz方向の位置
+		float z =	1.0 * m_pos_z - 15.0 //現在のキューブのz方向の位置
 					- ((sqrt((0.98 * 0.98) / 2.0) * cos(D2R(m_rot) + (PI / 4.0)))) - 0.5; //回転による-z方向へのズレ
 		glTranslatef(x, y, z);
 		
@@ -199,6 +228,11 @@ void PuzzleCube::start_generate(void)
 void PuzzleCube::start_run(void)
 {
 	m_state = STATE_RUN;
+}
+
+void PuzzleCube::start_down(void)
+{
+	m_state = STATE_DOWN;
 }
 
 void PuzzleCube::set_pos_y(float pos_y)

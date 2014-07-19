@@ -1,10 +1,13 @@
 #ifndef __PLAYER_H__
-#define __PLATER_H__
+#define __PLAYER_H__
 
 
 #include "./common.h"
 #include "./Object.h"
 #include "./Event.h"
+#include "./Stage.h"
+
+#define PLAYER_WALK_SPEED (0.07)
 
 class Player : public Object {
 private:
