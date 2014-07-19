@@ -69,7 +69,7 @@ void world(void)
 	
 	/* ŒõŒ¹‚ÌˆÚ“® */
 	glPushMatrix();
-	GLfloat light_position0[] = {0.0, 10.0, 0.0, 1.0};
+	GLfloat light_position0[] = {0.0, 10.0, 20.0, 1.0};
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
 	glPopMatrix();
 	
