@@ -25,9 +25,6 @@ public:
 		else if (key == 'k'){
 			stage->exp_adv_marker();
 		}
-		else {
-			mPlayer->set_pos(z += 0.01, x += 0.01);
-		}
 		
 		switch (key){
 		  case 'a':

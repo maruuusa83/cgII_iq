@@ -11,10 +11,14 @@ Camera::Camera(float x, float y, float z)
 
 void Camera::calc(void)
 {
-	m_distance = 20;
-	m_twist = -5;
+	m_distance = 15;
 	m_elevation = -25;
-	m_azimuth = 45;
+	
+	float z, x;
+	player->get_pos(&z, &x);
+	m_elevation = -(16.0 - z) * 1.2 - 5;
+	m_azimuth = x * 10.0;
+	m_twist = x * 1.5;
 }
 
 void Camera::get_pos(float *distance, float *twist, float *elevation, float *azimuth)
