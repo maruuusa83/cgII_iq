@@ -141,7 +141,8 @@ int PuzzleCube::calc(void)
 			m_rot = 0.0;
 			m_pos_z++;
 			
-			check_marker(); //床が赤マーカかどうかチェックする
+			//床が赤マーカかどうかチェックする
+			//check_marker(); 
 			
 			if (m_state != STATE_DOWN){
 				m_wait = 0;
@@ -156,6 +157,8 @@ int PuzzleCube::calc(void)
 			m_state = STATE_RUN;
 	  	}
 		else {
+			//床が赤マーカかどうかチェックする
+			check_marker(); 
 			m_wait++;
 		}
 	  	break;
