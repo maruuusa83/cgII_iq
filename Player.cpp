@@ -9,6 +9,7 @@ MAT mat_player =
 	};
 	
 extern Event *event;
+extern Stage *stage;
 
 class MyEventCallbackListener : public EventCallbackListener {
 public:
@@ -18,9 +19,30 @@ public:
 		Player *mPlayer = (Player *)context;
 		
 		mPlayer->get_pos(&z, &x);
-		mPlayer->set_pos(z += 0.01, x += 0.01);
+		if (key == 'j'){
+			stage->player_marker(z - 16.5, x + 4.0);
+		}
+		else if (key == 'k'){
+			stage->exp_adv_marker();
+		}
 		
-		printf("KEY HIT\n");
+		switch (key){
+		  case 'a':
+			mPlayer->set_pos(z, x -= PLAYER_WALK_SPEED);
+			break;
+		
+		  case 'd':
+			mPlayer->set_pos(z, x += PLAYER_WALK_SPEED);
+			break;
+		
+		  case 's':
+			mPlayer->set_pos(z += PLAYER_WALK_SPEED, x);
+			break;
+		
+		  case 'w':
+			mPlayer->set_pos(z -= PLAYER_WALK_SPEED, x);
+			break;
+		}
 	}
 };
 
@@ -32,7 +54,7 @@ Player::Player(void)
 
 void Player::calc(void)
 {
-	pos_z -= 0.01;
+	
 }
 
 /* 高さ0.5程度のプレイヤーのポリゴンをつくる */

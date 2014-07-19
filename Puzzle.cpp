@@ -1,5 +1,7 @@
 #include "./Puzzle.h"
 
+extern Stage *stage;
+
 /*** Puzzleクラスの定義 ***/
 Puzzle::Puzzle(void)
 {
@@ -92,7 +94,6 @@ void Puzzle::run(void)
 	}
 }
 
-
 /*** PuzzleCubeクラスの定義 ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
@@ -104,6 +105,19 @@ PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 	
 	m_pos_y = -0.01; //0.0にしていると微妙に見えるので少し下げる
 	m_rot = 0.0;
+}
+
+void PuzzleCube::check_marker(void)
+{
+	//printf("%d %d\n", m_pos_z, m_pos_x);
+	char marker = stage->get_marker(m_pos_z, m_pos_x);
+	
+	if (marker == MARKER_RED){
+		m_state = STATE_DOWN;
+		if (m_kind == CUBE_ADVANTAGE){ //アドバンテージキューブが爆破された場合、床にマーキング
+				stage->set_adv_marker(m_pos_z, m_pos_x);
+		}
+	}
 }
 
 int PuzzleCube::calc(void)
@@ -127,13 +141,18 @@ int PuzzleCube::calc(void)
 			m_rot = 0.0;
 			m_pos_z++;
 			
-			m_wait = 0;
-			m_state = STATE_WAIT_NEXT; //一時停止する
+			check_marker(); //床が赤マーカかどうかチェックする
+			
+			if (m_state != STATE_DOWN){
+				m_wait = 0;
+				m_state = STATE_WAIT_NEXT; //一時停止する
+			}
 		}
 		break;
 	
 	  case STATE_WAIT_NEXT: //一時停止している状態
 	  	if (m_wait > CUBE_WAIT_TIME){
+			m_wait = 0;
 			m_state = STATE_RUN;
 	  	}
 		else {
