@@ -28,21 +28,35 @@ public:
 		
 		switch (key){
 		  case 'a':
-			mPlayer->set_pos(z, x -= PLAYER_WALK_SPEED);
+			x -= PLAYER_WALK_SPEED;
 			break;
 		
 		  case 'd':
-			mPlayer->set_pos(z, x += PLAYER_WALK_SPEED);
+			x += PLAYER_WALK_SPEED;
 			break;
 		
 		  case 's':
-			mPlayer->set_pos(z += PLAYER_WALK_SPEED, x);
+			z += PLAYER_WALK_SPEED;
 			break;
 		
 		  case 'w':
-			mPlayer->set_pos(z -= PLAYER_WALK_SPEED, x);
+			z -= PLAYER_WALK_SPEED;
 			break;
 		}
+		
+		if (2.99 < x){
+			x = 2.99;
+		}
+		else if (x < -2.99){
+			x = -2.99;
+		}
+		if (15.499 < z){
+			z = 15.499;
+		}
+		else if (z < -16.499){
+			z = -16.499;
+		}
+		mPlayer->set_pos(z, x);
 	}
 };
 
