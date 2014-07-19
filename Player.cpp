@@ -29,7 +29,23 @@ public:
 			mPlayer->set_pos(z += 0.01, x += 0.01);
 		}
 		
-		printf("KEY HIT\n");
+		switch (key){
+		  case 'a':
+			mPlayer->set_pos(z, x -= PLAYER_WALK_SPEED);
+			break;
+		
+		  case 'd':
+			mPlayer->set_pos(z, x += PLAYER_WALK_SPEED);
+			break;
+		
+		  case 's':
+			mPlayer->set_pos(z += PLAYER_WALK_SPEED, x);
+			break;
+		
+		  case 'w':
+			mPlayer->set_pos(z -= PLAYER_WALK_SPEED, x);
+			break;
+		}
 	}
 };
 
@@ -41,7 +57,7 @@ Player::Player(void)
 
 void Player::calc(void)
 {
-	pos_z -= 0.01;
+	
 }
 
 /* 高さ0.5程度のプレイヤーのポリゴンをつくる */
