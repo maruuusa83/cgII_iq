@@ -19,7 +19,7 @@
 #define CUBE_GEN_SPD	(0.01 * (SPEED))
 #define CUBE_DOWN_SPD	(CUBE_GEN_SPD * (0.8))
 #define CUBE_ROT_DEG	(0.7 * (SPEED))
-#define CUBE_WAIT_TIME	((int)(45.0 * (1.0 / (SPEED))))
+#define CUBE_WAIT_TIME	((int)(100.0 * (1.0 / (SPEED))))
 
 extern MAT mat_normal_cube;
 extern MAT mat_forbidden_cube;
