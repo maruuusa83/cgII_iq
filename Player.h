@@ -7,7 +7,7 @@
 #include "./Event.h"
 #include "./Stage.h"
 
-#define PLAYER_WALK_SPEED (0.07)
+#define PLAYER_WALK_SPEED (0.12)
 
 class Player : public Object {
 private:
