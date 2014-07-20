@@ -18,7 +18,7 @@ void Camera::calc(void)
 	player->get_pos(&z, &x);
 	m_elevation = -(16.0 - z) * 1.2 - 5;
 	m_azimuth = x * 10.0;
-	m_twist = x * 1.5;
+	m_twist = x * 1.6;
 }
 
 void Camera::get_pos(float *distance, float *twist, float *elevation, float *azimuth)
