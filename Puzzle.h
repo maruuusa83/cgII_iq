@@ -50,6 +50,7 @@ public:
 	void set_pos_y(float pos_y);
 	float get_pos_y(void);
 	int get_state(void);
+	int get_kind(void);
 };
 
 class Puzzle : public Object {

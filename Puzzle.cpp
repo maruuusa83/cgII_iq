@@ -96,7 +96,15 @@ void Puzzle::run(void)
 
 int Puzzle::check_finish(void)
 {
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 10; j++){
+			if (m_puzzle_map[i][j]->get_state() != STATE_STOP && m_puzzle_map[i][j]->get_kind() != CUBE_FORBIDDEN){
+				return (FALSE);
+			}
+		}
+	}
 	
+	return (TRUE);
 }
 
 /*** PuzzleCubeƒNƒ‰ƒX‚Ì’è‹` ***/
@@ -199,6 +207,7 @@ void PuzzleCube::draw(void)
 	  case CUBE_ADVANTAGE:
 	  	mat = mat_advantage_cube;
 	  	break;
+		
 	
 	  default:
 	  	mat = mat_normal_cube;
@@ -254,4 +263,9 @@ float PuzzleCube::get_pos_y(void)
 int PuzzleCube::get_state(void)
 {
 	return (m_state);
+}
+
+int PuzzleCube::get_kind(void)
+{
+	return (m_kind);
 }
