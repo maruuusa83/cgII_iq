@@ -115,6 +115,8 @@ void idle(void)
 	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
 	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
 	/* それぞれの位置を取得・設定していく             */
+	puzzle->check_finish();
+	
 	player->calc();
 	stage->calc();
 	puzzle->calc();

@@ -67,6 +67,8 @@ public:
 	void get_puzzle(void);
 	void generate(void);
 	void run(void);
+	
+	int check_finish(void);
 };
 
 #endif

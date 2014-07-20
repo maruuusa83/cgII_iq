@@ -94,6 +94,11 @@ void Puzzle::run(void)
 	}
 }
 
+int Puzzle::check_finish(void)
+{
+	
+}
+
 /*** PuzzleCubeƒNƒ‰ƒX‚Ì’è‹` ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
