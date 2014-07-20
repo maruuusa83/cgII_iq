@@ -98,7 +98,7 @@ int Puzzle::check_finish(void)
 {
 	for (int i = 0; i < 6; i++){
 		for (int j = 0; j < 10; j++){
-			if (m_puzzle_map[i][j]->get_state() != STATE_STOP && m_puzzle_map[i][j]->get_kind() != CUBE_FORBIDDEN){
+			if (m_state != STATE_RUN || (m_puzzle_map[i][j]->get_state() != STATE_STOP && m_puzzle_map[i][j]->get_kind() != CUBE_FORBIDDEN)){
 				return (FALSE);
 			}
 		}
