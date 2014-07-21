@@ -115,11 +115,17 @@ void idle(void)
 	/* TODO: 各オブジェクトの計算処理部分の呼び出し   */
 	/* 先ずは全オブジェクトのcalc_posを呼び出してから */
 	/* それぞれの位置を取得・設定していく             */
+	
+	
 	player->calc();
 	stage->calc();
 	puzzle->calc();
 	camera->calc();
 	
+	if (puzzle->check_finish() == TRUE){
+		/* TODO: ゲーム終了の処理 */
+		puzzle->set_state_fin();
+	}
 	
 	glutPostRedisplay(); /* 再描画の呼び出し */
 }

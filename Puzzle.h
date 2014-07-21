@@ -15,6 +15,7 @@
 #define STATE_RUN			(3)
 #define STATE_WAIT_NEXT		(4)
 #define STATE_DOWN			(5)
+#define STATE_DEL			(6)
 
 #define CUBE_GEN_SPD	(0.01 * (SPEED))
 #define CUBE_DOWN_SPD	(CUBE_GEN_SPD * (0.8))
@@ -50,6 +51,7 @@ public:
 	void set_pos_y(float pos_y);
 	float get_pos_y(void);
 	int get_state(void);
+	int get_kind(void);
 };
 
 class Puzzle : public Object {
@@ -67,6 +69,10 @@ public:
 	void get_puzzle(void);
 	void generate(void);
 	void run(void);
+	
+	int check_finish(void);
+	
+	void set_state_fin(void);
 };
 
 #endif
