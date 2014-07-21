@@ -94,6 +94,30 @@ void Puzzle::run(void)
 	}
 }
 
+int Puzzle::check_finish(void)
+{
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 10; j++){
+			if (m_state != STATE_RUN || (m_puzzle_map[i][j]->get_state() != STATE_DEL && m_puzzle_map[i][j]->get_kind() != CUBE_FORBIDDEN)){
+				return (FALSE);
+			}
+		}
+	}
+	
+	return (TRUE);
+}
+
+void Puzzle::set_state_fin(void)
+{
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 10; j++){
+			if (m_puzzle_map[i][j]->get_state() != STATE_DEL){
+				m_puzzle_map[i][j]->start_down();
+			}
+		}
+	}
+}
+
 /*** PuzzleCubeクラスの定義 ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
@@ -164,12 +188,12 @@ int PuzzleCube::calc(void)
 	  	break;
 	
 	  case STATE_DOWN:
-	  	if (m_pos_y > 0.0){
+	  	if (m_pos_y > -0.4){
 			m_pos_y -= CUBE_DOWN_SPD;
 	  	}
 		else {
 			m_pos_y = -1.0;
-			m_state = STATE_STOP;
+			m_state = STATE_DEL;
 		}
 		break;
 	}
@@ -180,6 +204,9 @@ int PuzzleCube::calc(void)
 void PuzzleCube::draw(void)
 {
 	MAT mat;
+	if (m_state == STATE_DEL){
+		return;
+	}
 	
 	/* キューブの質感の設定 */
 	switch (m_kind){
@@ -194,6 +221,7 @@ void PuzzleCube::draw(void)
 	  case CUBE_ADVANTAGE:
 	  	mat = mat_advantage_cube;
 	  	break;
+		
 	
 	  default:
 	  	mat = mat_normal_cube;
@@ -238,6 +266,7 @@ void PuzzleCube::start_down(void)
 	m_state = STATE_DOWN;
 }
 
+
 void PuzzleCube::set_pos_y(float pos_y)
 {
 	m_pos_y = pos_y;
@@ -249,4 +278,9 @@ float PuzzleCube::get_pos_y(void)
 int PuzzleCube::get_state(void)
 {
 	return (m_state);
+}
+
+int PuzzleCube::get_kind(void)
+{
+	return (m_kind);
 }
