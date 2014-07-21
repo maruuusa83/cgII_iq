@@ -15,6 +15,7 @@
 #define STATE_RUN			(3)
 #define STATE_WAIT_NEXT		(4)
 #define STATE_DOWN			(5)
+#define STATE_DEL			(6)
 
 #define CUBE_GEN_SPD	(0.01 * (SPEED))
 #define CUBE_DOWN_SPD	(CUBE_GEN_SPD * (0.8))

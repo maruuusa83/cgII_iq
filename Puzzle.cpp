@@ -98,7 +98,7 @@ int Puzzle::check_finish(void)
 {
 	for (int i = 0; i < 6; i++){
 		for (int j = 0; j < 10; j++){
-			if (m_state != STATE_RUN || (m_puzzle_map[i][j]->get_state() != STATE_STOP && m_puzzle_map[i][j]->get_kind() != CUBE_FORBIDDEN)){
+			if (m_state != STATE_RUN || (m_puzzle_map[i][j]->get_state() != STATE_DEL && m_puzzle_map[i][j]->get_kind() != CUBE_FORBIDDEN)){
 				return (FALSE);
 			}
 		}
@@ -111,7 +111,7 @@ void Puzzle::set_state_fin(void)
 {
 	for (int i = 0; i < 6; i++){
 		for (int j = 0; j < 10; j++){
-			if (m_puzzle_map[i][j]->get_state() != STATE_STOP){
+			if (m_puzzle_map[i][j]->get_state() != STATE_DEL){
 				m_puzzle_map[i][j]->start_down();
 			}
 		}
@@ -193,7 +193,7 @@ int PuzzleCube::calc(void)
 	  	}
 		else {
 			m_pos_y = -1.0;
-			m_state = STATE_STOP;
+			m_state = STATE_DEL;
 		}
 		break;
 	}
@@ -204,6 +204,9 @@ int PuzzleCube::calc(void)
 void PuzzleCube::draw(void)
 {
 	MAT mat;
+	if (m_state == STATE_DEL){
+		return;
+	}
 	
 	/* ÉLÉÖÅ[ÉuÇÃéøä¥ÇÃê›íË */
 	switch (m_kind){
