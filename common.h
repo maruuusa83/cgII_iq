@@ -10,7 +10,7 @@
 #include "myShape.h"
 
 /* スピードの調整用 */
-#define SPEED (0.5)
+#define SPEED (0.4)
 
 #define DISPLAY_WIDTH  (1280)
 #define DISPLAY_HEIGHT (960)

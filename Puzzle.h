@@ -70,6 +70,8 @@ public:
 	void run(void);
 	
 	int check_finish(void);
+	
+	void set_state_fin(void);
 };
 
 #endif

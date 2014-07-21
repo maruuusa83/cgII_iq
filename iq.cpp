@@ -124,7 +124,9 @@ void idle(void)
 	
 	if (puzzle->check_finish() == TRUE){
 		/* TODO: ƒQ[ƒ€I—¹‚Ìˆ— */
-		exit(0);
+		for (int i = 0; i < 10000; i++);
+		puzzle->set_state_fin();
+		//exit(0);
 	}
 	
 	glutPostRedisplay(); /* Ä•`‰æ‚ÌŒÄ‚Ño‚µ */
