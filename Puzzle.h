@@ -18,7 +18,7 @@
 #define STATE_DEL			(6)
 
 #define CUBE_GEN_SPD	(0.01 * (SPEED))
-#define CUBE_DOWN_SPD	(CUBE_GEN_SPD * (0.8))
+#define CUBE_DOWN_SPD	(CUBE_GEN_SPD * (3.0))
 #define CUBE_ROT_DEG	(0.7 * (SPEED))
 #define CUBE_WAIT_TIME	((int)(150.0 * (1.0 / (SPEED))))
 
