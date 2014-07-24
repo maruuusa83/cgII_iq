@@ -118,6 +118,11 @@ void Puzzle::set_state_fin(void)
 	}
 }
 
+int Puzzle::is_cube_pos(int pos_x, int pos_y)
+{
+	
+}
+
 /*** PuzzleCubeƒNƒ‰ƒX‚Ì’è‹` ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {

@@ -73,6 +73,8 @@ public:
 	int check_finish(void);
 	
 	void set_state_fin(void);
+	
+	int is_cube_pos(int pos_x, int pos_y);
 };
 
 #endif
