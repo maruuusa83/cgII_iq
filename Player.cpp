@@ -44,7 +44,25 @@ public:
 			z -= PLAYER_WALK_SPEED;
 			break;
 		}
-		puzzle->is_cube_pos(z, x);
+		if (puzzle->is_cube_pos(z, x) == TRUE){
+			switch (key){
+			  case 'a':
+				x += PLAYER_WALK_SPEED;
+				break;
+			
+			  case 'd':
+				x -= PLAYER_WALK_SPEED;
+				break;
+			
+			  case 's':
+				z -= PLAYER_WALK_SPEED;
+				break;
+			
+			  case 'w':
+				z += PLAYER_WALK_SPEED;
+				break;
+			}
+		}
 		
 		if (2.99 < x){
 			x = 2.99;
