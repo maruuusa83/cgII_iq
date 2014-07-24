@@ -125,7 +125,7 @@ int Puzzle::is_cube_pos(float pos_z, float pos_x)
 		for (int j = 0; j < 10; j++){
 			if (m_puzzle_map[i][j]->get_state() != STATE_DEL){
 				m_puzzle_map[i][j]->get_pos(&cube_pos_z, &cube_pos_x);
-				if ((int)cube_pos_z == (int)pos_z && (int)cube_pos_x == (int)pos_x){
+				if (cube_pos_z - 15.5 > pos_z && cube_pos_x > pos_x){
 					return (TRUE);
 				}
 			}
