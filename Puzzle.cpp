@@ -289,3 +289,9 @@ int PuzzleCube::get_kind(void)
 {
 	return (m_kind);
 }
+
+void PuzzleCube::get_pos(float *pos_z, float *pos_x)
+{
+	*pos_z = m_pos_z;
+	*pos_x = m_pos_x;
+}

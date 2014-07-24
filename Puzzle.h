@@ -52,6 +52,7 @@ public:
 	float get_pos_y(void);
 	int get_state(void);
 	int get_kind(void);
+	void get_pos(float *pos_z, float *pos_x);
 };
 
 class Puzzle : public Object {
