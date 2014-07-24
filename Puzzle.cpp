@@ -118,7 +118,7 @@ void Puzzle::set_state_fin(void)
 	}
 }
 
-int Puzzle::is_cube_pos(int pos_z, int pos_x)
+int Puzzle::is_cube_pos(float pos_z, float pos_x)
 {
 	float cube_pos_z, cube_pos_x;
 	for (int i = 0; i < 6; i++){

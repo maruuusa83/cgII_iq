@@ -75,7 +75,7 @@ public:
 	
 	void set_state_fin(void);
 	
-	int is_cube_pos(int pos_x, int pos_y);
+	int is_cube_pos(float pos_z, float pos_x);
 };
 
 #endif

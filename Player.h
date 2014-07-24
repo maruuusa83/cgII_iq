@@ -6,6 +6,7 @@
 #include "./Object.h"
 #include "./Event.h"
 #include "./Stage.h"
+#include "./Puzzle.h"
 
 #define PLAYER_WALK_SPEED (0.07)
 
