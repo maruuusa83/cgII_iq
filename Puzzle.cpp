@@ -118,6 +118,23 @@ void Puzzle::set_state_fin(void)
 	}
 }
 
+int Puzzle::is_cube_pos(float pos_z, float pos_x)
+{
+	float cube_pos_z, cube_pos_x;
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 10; j++){
+			if (m_puzzle_map[i][j]->get_state() != STATE_DEL){
+				m_puzzle_map[i][j]->get_pos(&cube_pos_z, &cube_pos_x);
+				if (cube_pos_z - 15.5 > pos_z && cube_pos_x > pos_x){
+					return (TRUE);
+				}
+			}
+		}
+	}
+	
+	return (FALSE);
+}
+
 /*** PuzzleCubeƒNƒ‰ƒX‚Ì’è‹` ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
@@ -283,4 +300,10 @@ int PuzzleCube::get_state(void)
 int PuzzleCube::get_kind(void)
 {
 	return (m_kind);
+}
+
+void PuzzleCube::get_pos(float *pos_z, float *pos_x)
+{
+	*pos_z = m_pos_z;
+	*pos_x = m_pos_x;
 }
