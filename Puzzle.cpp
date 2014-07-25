@@ -1,6 +1,7 @@
 #include "./Puzzle.h"
 
 extern Stage *stage;
+extern Player *player;
 
 /*** Puzzleクラスの定義 ***/
 Puzzle::Puzzle(void)
@@ -179,11 +180,13 @@ int PuzzleCube::calc(void)
 			m_rot += CUBE_ROT_DEG;
 	  	}
 		else {
+			float pos_z, pos_x;
+			
 			m_rot = 0.0;
 			m_pos_z++;
 			
-			//床が赤マーカかどうかチェックする
-			//check_marker(); 
+			//プレイヤーがそのマスにいるか確認する
+			player->get_pos(&pos_z, &pos_x);
 			
 			if (m_state != STATE_DOWN){
 				m_wait = 0;
