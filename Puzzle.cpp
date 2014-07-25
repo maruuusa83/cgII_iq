@@ -126,6 +126,7 @@ int Puzzle::is_cube_pos(float pos_z, float pos_x)
 			if (m_puzzle_map[i][j]->get_state() != STATE_DEL){
 				m_puzzle_map[i][j]->get_pos(&cube_pos_z, &cube_pos_x);
 				if (cube_pos_z - 15.5 > pos_z && cube_pos_x > pos_x){
+					printf("%f %f\n", cube_pos_x, pos_x);
 					return (TRUE);
 				}
 			}
@@ -179,11 +180,10 @@ int PuzzleCube::calc(void)
 			m_rot += CUBE_ROT_DEG;
 	  	}
 		else {
+			float pos_z, pos_x;
+			
 			m_rot = 0.0;
 			m_pos_z++;
-			
-			//床が赤マーカかどうかチェックする
-			//check_marker(); 
 			
 			if (m_state != STATE_DOWN){
 				m_wait = 0;
