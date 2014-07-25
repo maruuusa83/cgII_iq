@@ -6,6 +6,7 @@
 #include "./Object.h"
 #include "./GL_Utility.h"
 #include "./Stage.h"
+#include "./Player.h"
 
 #include <stdio.h>
 
