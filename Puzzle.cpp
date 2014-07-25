@@ -188,6 +188,10 @@ int PuzzleCube::calc(void)
 			
 			//プレイヤーがそのマスにいるか確認する
 			player->get_pos(&pos_z, &pos_x);
+			if ((m_pos_z - 16.5 < pos_z && pos_z < m_pos_z - 15.5) && (m_pos_x - 3.0 < pos_x && pos_x < m_pos_x - 2.0)){
+				printf("fin\n");
+			}
+			
 			if (m_state != STATE_DOWN){
 				m_wait = 0;
 				m_state = STATE_WAIT_NEXT; //一時停止する
