@@ -2,6 +2,7 @@
 
 extern Stage *stage;
 extern Player *player;
+extern Puzzle *puzzle;
 
 /*** Puzzleクラスの定義 ***/
 Puzzle::Puzzle(void)
@@ -189,7 +190,7 @@ int PuzzleCube::calc(void)
 			//プレイヤーがそのマスにいるか確認する
 			player->get_pos(&pos_z, &pos_x);
 			if ((m_pos_z - 16.5 < pos_z && pos_z < m_pos_z - 15.5) && (m_pos_x - 3.0 < pos_x && pos_x < m_pos_x - 2.0)){
-				printf("fin\n");
+				puzzle->set_state_fin();
 			}
 			
 			if (m_state != STATE_DOWN){
