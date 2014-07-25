@@ -7,9 +7,10 @@ MAT mat_player =
 		{0.3, 0.3, 0.3, 1.0},
 		100.0
 	};
-	
+
 extern Event *event;
 extern Stage *stage;
+extern Puzzle *puzzle;
 
 class MyEventCallbackListener : public EventCallbackListener {
 public:
@@ -42,6 +43,25 @@ public:
 		  case 'w':
 			z -= PLAYER_WALK_SPEED;
 			break;
+		}
+		if (puzzle->is_cube_pos(z, x) == TRUE){
+			switch (key){
+			  case 'a':
+				x += PLAYER_WALK_SPEED;
+				break;
+			
+			  case 'd':
+				x -= PLAYER_WALK_SPEED;
+				break;
+			
+			  case 's':
+				z -= PLAYER_WALK_SPEED;
+				break;
+			
+			  case 'w':
+				z += PLAYER_WALK_SPEED;
+				break;
+			}
 		}
 		
 		if (2.99 < x){

@@ -1,6 +1,8 @@
 #include "./Puzzle.h"
 
 extern Stage *stage;
+extern Player *player;
+extern Puzzle *puzzle;
 
 /*** Puzzleクラスの定義 ***/
 Puzzle::Puzzle(void)
@@ -118,6 +120,24 @@ void Puzzle::set_state_fin(void)
 	}
 }
 
+int Puzzle::is_cube_pos(float pos_z, float pos_x)
+{
+	float cube_pos_z, cube_pos_x;
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 10; j++){
+			if (m_puzzle_map[i][j]->get_state() != STATE_DEL){
+				m_puzzle_map[i][j]->get_pos(&cube_pos_z, &cube_pos_x);
+				if ((cube_pos_z - 16.5 < pos_z && pos_z < cube_pos_z - 15.5) && (cube_pos_x - 3.0 < pos_x && pos_x < cube_pos_x - 2.0)){
+					printf("%f %f\n", cube_pos_x, pos_x);
+					return (TRUE);
+				}
+			}
+		}
+	}
+	
+	return (FALSE);
+}
+
 /*** PuzzleCubeクラスの定義 ***/
 PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 {
@@ -162,11 +182,16 @@ int PuzzleCube::calc(void)
 			m_rot += CUBE_ROT_DEG;
 	  	}
 		else {
+			float pos_z, pos_x;
+			
 			m_rot = 0.0;
 			m_pos_z++;
 			
-			//床が赤マーカかどうかチェックする
-			//check_marker(); 
+			//プレイヤーがそのマスにいるか確認する
+			player->get_pos(&pos_z, &pos_x);
+			if ((m_pos_z - 16.5 < pos_z && pos_z < m_pos_z - 15.5) && (m_pos_x - 3.0 < pos_x && pos_x < m_pos_x - 2.0)){
+				puzzle->set_state_fin();
+			}
 			
 			if (m_state != STATE_DOWN){
 				m_wait = 0;
@@ -283,4 +308,10 @@ int PuzzleCube::get_state(void)
 int PuzzleCube::get_kind(void)
 {
 	return (m_kind);
+}
+
+void PuzzleCube::get_pos(float *pos_z, float *pos_x)
+{
+	*pos_z = m_pos_z;
+	*pos_x = m_pos_x;
 }
