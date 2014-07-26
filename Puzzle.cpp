@@ -207,6 +207,12 @@ int PuzzleCube::calc(void)
 			m_state = STATE_RUN;
 	  	}
 		else {
+			printf("%d\n", m_pos_z);
+			if (m_pos_z >= 32){
+				m_state = STATE_DISAPPEAR;
+				break;
+			}
+			
 			//床が赤マーカかどうかチェックする
 			check_marker(); 
 			m_wait++;
