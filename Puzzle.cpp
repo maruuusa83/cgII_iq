@@ -146,6 +146,8 @@ PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 	m_pos_z = pos_z;
 	m_pos_x = pos_x;
 	
+	m_size = 0.98;
+	
 	m_pos_y = -0.01; //0.0‚É‚µ‚Ä‚¢‚é‚Æ”÷–­‚ÉŒ©‚¦‚é‚Ì‚Å­‚µ‰º‚°‚é
 	m_rot = 0.0;
 }
@@ -270,7 +272,7 @@ void PuzzleCube::draw(void)
 		GL_Utility::polarview(0, 0, -m_rot, 0);
 		
 		/* ­‚µ¬‚³–Ú‚ÌƒLƒ…[ƒu‚ğ•`‰æ‚·‚é */
-		glutSolidCube(0.98);
+		glutSolidCube(m_size);
 	glPopMatrix();
 }
 

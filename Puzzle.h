@@ -35,6 +35,8 @@ private:
 	float m_pos_y;
 	float m_rot;
 	
+	float m_size;
+	
 	int m_wait;
 	
 public:
