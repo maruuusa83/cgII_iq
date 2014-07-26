@@ -222,6 +222,15 @@ int PuzzleCube::calc(void)
 			m_state = STATE_DEL;
 		}
 		break;
+		
+	  case STATE_DISAPPEAR:
+	  	if (m_size > 0.0){
+			m_size -= CUBE_DIS_SPD;
+	  	}
+		else {
+			m_state = STATE_DEL;
+		}
+	  	break;
 	}
 	
 	return (0);
