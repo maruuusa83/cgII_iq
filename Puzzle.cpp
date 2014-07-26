@@ -128,7 +128,6 @@ int Puzzle::is_cube_pos(float pos_z, float pos_x)
 			if (m_puzzle_map[i][j]->get_state() != STATE_DEL){
 				m_puzzle_map[i][j]->get_pos(&cube_pos_z, &cube_pos_x);
 				if ((cube_pos_z - 16.5 < pos_z && pos_z < cube_pos_z - 15.5) && (cube_pos_x - 3.0 < pos_x && pos_x < cube_pos_x - 2.0)){
-					printf("%f %f\n", cube_pos_x, pos_x);
 					return (TRUE);
 				}
 			}

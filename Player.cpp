@@ -84,6 +84,9 @@ Player::Player(void)
 {
 	MyEventCallbackListener *callback = new MyEventCallbackListener;
 	event->add_key_listener((void *)this, callback);
+	
+	pos_z = 10.0;
+	pos_x = 0.0;
 }
 
 void Player::calc(void)
