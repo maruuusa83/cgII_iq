@@ -146,6 +146,8 @@ PuzzleCube::PuzzleCube(char kind, int pos_z, int pos_x)
 	m_pos_z = pos_z;
 	m_pos_x = pos_x;
 	
+	m_size = 0.98;
+	
 	m_pos_y = -0.01; //0.0にしていると微妙に見えるので少し下げる
 	m_rot = 0.0;
 }
@@ -205,6 +207,12 @@ int PuzzleCube::calc(void)
 			m_state = STATE_RUN;
 	  	}
 		else {
+			printf("%d\n", m_pos_z);
+			if (m_pos_z >= 32){
+				m_state = STATE_DISAPPEAR;
+				break;
+			}
+			
 			//床が赤マーカかどうかチェックする
 			check_marker(); 
 			m_wait++;
@@ -220,6 +228,15 @@ int PuzzleCube::calc(void)
 			m_state = STATE_DEL;
 		}
 		break;
+		
+	  case STATE_DISAPPEAR:
+	  	if (m_size > 0.0){
+			m_size -= CUBE_DIS_SPD;
+	  	}
+		else {
+			m_state = STATE_DEL;
+		}
+	  	break;
 	}
 	
 	return (0);
@@ -270,7 +287,7 @@ void PuzzleCube::draw(void)
 		GL_Utility::polarview(0, 0, -m_rot, 0);
 		
 		/* 少し小さ目のキューブを描画する */
-		glutSolidCube(0.98);
+		glutSolidCube(m_size);
 	glPopMatrix();
 }
 

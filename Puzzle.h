@@ -17,11 +17,13 @@
 #define STATE_WAIT_NEXT		(4)
 #define STATE_DOWN			(5)
 #define STATE_DEL			(6)
+#define STATE_DISAPPEAR		(7)
 
 #define CUBE_GEN_SPD	(0.01 * (SPEED))
 #define CUBE_DOWN_SPD	(CUBE_GEN_SPD * (3.0))
 #define CUBE_ROT_DEG	(0.7 * (SPEED))
 #define CUBE_WAIT_TIME	((int)(150.0 * (1.0 / (SPEED))))
+#define CUBE_DIS_SPD	(0.03)
 
 extern MAT mat_normal_cube;
 extern MAT mat_forbidden_cube;
@@ -34,6 +36,8 @@ private:
 	int m_pos_z, m_pos_x;
 	float m_pos_y;
 	float m_rot;
+	
+	float m_size;
 	
 	int m_wait;
 	
