@@ -17,9 +17,9 @@
 
 #define KEY_ESC 27
 
-#define CUBE_NORMAL		(1)
+#define CUBE_NORMAL		(0)
 #define CUBE_FORBIDDEN	(2)
-#define CUBE_ADVANTAGE	(3)
+#define CUBE_ADVANTAGE	(1)
 
 #define PI (3.141592653)
 #define D2R(deg) (((2.0 * (PI)) / 360.0) * (deg))
