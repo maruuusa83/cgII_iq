@@ -46,10 +46,43 @@ void Puzzle::draw(void)
 /* パズルを取得して設定する関数 */
 void Puzzle::get_puzzle(void)
 {
-	for (int i = 0; i < 6; i++){
+	//ファイルの読出し
+	int n;
+	int tmp;
+	FILE *fp = fopen("./puzzle_map.txt", "r");
+	fscanf(fp, "%d", &n);
+	
+	printf("%d\n", n);
+	
+	srand(time(NULL));
+	n = rand() % n; //使うパズルの決定
+	
+	/*使わないパズルの読み捨て*/
+	for (int i = 0; i < n; i++){
+		int t1, t2, t3, t4, t5, t6;
+		
+		fscanf(fp, "%d", &tmp); //0の読み捨て
+		printf("%d\n", tmp);
 		for (int j = 0; j < 10; j++){
-			m_puzzle_map[i][j] = new PuzzleCube((i + j) % 3 + 1, j, i);
+			fscanf(fp, "%d %d %d %d %d %d", &t1, &t2, &t3, &t4, &t5, &t6); //パズルの読み捨て
+			printf("%d %d %d %d %d %d\n", t1, t2, t3, t4, t5, t6);
 		}
+
+	}
+	
+	/*パズル読み込み*/
+	fscanf(fp, "%d", &tmp); //0の読み捨て
+	for (int j = 0; j < 10; j++){
+		int p1, p2, p3, p4, p5, p6;
+		fscanf(fp, "%d %d %d %d %d %d", &p1, &p2, &p3, &p4, &p5, &p6);
+		puts("hoge");
+		
+		m_puzzle_map[0][j] = new PuzzleCube(p1, j, 0);
+		m_puzzle_map[1][j] = new PuzzleCube(p2, j, 1);
+		m_puzzle_map[2][j] = new PuzzleCube(p3, j, 2);
+		m_puzzle_map[3][j] = new PuzzleCube(p4, j, 3);
+		m_puzzle_map[4][j] = new PuzzleCube(p5, j, 4);
+		m_puzzle_map[5][j] = new PuzzleCube(p6, j, 5);
 	}
 	
 	m_state = STATE_GENERATE;
