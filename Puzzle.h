@@ -1,7 +1,7 @@
 #ifndef __PUZZLE_H__
 #define __PUZZLE_H__
 
-
+#include <stdlib.h>
 #include "./common.h"
 #include "./Object.h"
 #include "./GL_Utility.h"

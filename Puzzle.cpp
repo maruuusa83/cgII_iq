@@ -46,10 +46,43 @@ void Puzzle::draw(void)
 /* パズルを取得して設定する関数 */
 void Puzzle::get_puzzle(void)
 {
-	for (int i = 0; i < 6; i++){
+	//ファイルの読出し
+	int n;
+	int tmp;
+	FILE *fp = fopen("./puzzle_map.txt", "r");
+	fscanf(fp, "%d", &n);
+	
+	printf("%d\n", n);
+	
+	srand(time(NULL));
+	n = rand() % n; //使うパズルの決定
+	
+	/*使わないパズルの読み捨て*/
+	for (int i = 0; i < n; i++){
+		char str[7];
+		
+		fscanf(fp, "%d", &tmp); //0の読み捨て
+		printf("%d\n", tmp);
 		for (int j = 0; j < 10; j++){
-			m_puzzle_map[i][j] = new PuzzleCube((i + j) % 3 + 1, j, i);
+			fscanf(fp, "%s", str); //パズルの読み捨て
+			printf("%s\n", str);
 		}
+
+	}
+	
+	/*パズル読み込み*/
+	fscanf(fp, "%d", &tmp); //0の読み捨て
+	for (int j = 0; j < 10; j++){
+		int p1, p2, p3, p4, p5, p6;
+		char str[7];
+		fscanf(fp, "%s", str);
+		
+		m_puzzle_map[0][j] = new PuzzleCube(str[0] -'0', j, 0);
+		m_puzzle_map[1][j] = new PuzzleCube(str[1] -'0', j, 1);
+		m_puzzle_map[2][j] = new PuzzleCube(str[2] -'0', j, 2);
+		m_puzzle_map[3][j] = new PuzzleCube(str[3] -'0', j, 3);
+		m_puzzle_map[4][j] = new PuzzleCube(str[4] -'0', j, 4);
+		m_puzzle_map[5][j] = new PuzzleCube(str[5] -'0', j, 5);
 	}
 	
 	m_state = STATE_GENERATE;
