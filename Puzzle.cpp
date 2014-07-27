@@ -59,13 +59,13 @@ void Puzzle::get_puzzle(void)
 	
 	/*使わないパズルの読み捨て*/
 	for (int i = 0; i < n; i++){
-		int t1, t2, t3, t4, t5, t6;
+		char str[7];
 		
 		fscanf(fp, "%d", &tmp); //0の読み捨て
 		printf("%d\n", tmp);
 		for (int j = 0; j < 10; j++){
-			fscanf(fp, "%d %d %d %d %d %d", &t1, &t2, &t3, &t4, &t5, &t6); //パズルの読み捨て
-			printf("%d %d %d %d %d %d\n", t1, t2, t3, t4, t5, t6);
+			fscanf(fp, "%s", str); //パズルの読み捨て
+			printf("%s\n", str);
 		}
 
 	}
@@ -74,15 +74,15 @@ void Puzzle::get_puzzle(void)
 	fscanf(fp, "%d", &tmp); //0の読み捨て
 	for (int j = 0; j < 10; j++){
 		int p1, p2, p3, p4, p5, p6;
-		fscanf(fp, "%d %d %d %d %d %d", &p1, &p2, &p3, &p4, &p5, &p6);
-		puts("hoge");
+		char str[7];
+		fscanf(fp, "%s", str);
 		
-		m_puzzle_map[0][j] = new PuzzleCube(p1, j, 0);
-		m_puzzle_map[1][j] = new PuzzleCube(p2, j, 1);
-		m_puzzle_map[2][j] = new PuzzleCube(p3, j, 2);
-		m_puzzle_map[3][j] = new PuzzleCube(p4, j, 3);
-		m_puzzle_map[4][j] = new PuzzleCube(p5, j, 4);
-		m_puzzle_map[5][j] = new PuzzleCube(p6, j, 5);
+		m_puzzle_map[0][j] = new PuzzleCube(str[0] -'0', j, 0);
+		m_puzzle_map[1][j] = new PuzzleCube(str[1] -'0', j, 1);
+		m_puzzle_map[2][j] = new PuzzleCube(str[2] -'0', j, 2);
+		m_puzzle_map[3][j] = new PuzzleCube(str[3] -'0', j, 3);
+		m_puzzle_map[4][j] = new PuzzleCube(str[4] -'0', j, 4);
+		m_puzzle_map[5][j] = new PuzzleCube(str[5] -'0', j, 5);
 	}
 	
 	m_state = STATE_GENERATE;
