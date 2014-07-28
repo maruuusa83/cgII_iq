@@ -192,6 +192,9 @@ void PuzzleCube::check_marker(void)
 	
 	if (marker == MARKER_RED){
 		m_state = STATE_DOWN;
+		if (m_kind == CUBE_FORBIDDEN){
+			puzzle->set_state_fin();
+		}
 		if (m_kind == CUBE_ADVANTAGE){ //アドバンテージキューブが爆破された場合、床にマーキング
 				stage->set_adv_marker(m_pos_z, m_pos_x);
 		}
@@ -247,7 +250,7 @@ int PuzzleCube::calc(void)
 			}
 			
 			//床が赤マーカかどうかチェックする
-			check_marker(); 
+			check_marker();
 			m_wait++;
 		}
 	  	break;
