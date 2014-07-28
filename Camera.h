@@ -1,17 +1,22 @@
-#ifndef __COMMON_H__
-#define __COMMON_H__
+#ifndef __CAMERA_H__
+#define __CAMERA_H__
 
 
 #include "./common.h"
+#include "./Player.h"
 
 class Camera
 {
 private:
-	float x, y, z;
+	float m_distance, m_twist, m_elevation, m_azimuth;
+	float mx, my, mz;
 	
 public:
-	void move_pos(float x, float y, float z, float direction_x, float direction_y, float direction_z);
-}
+	Camera(float x, float y, float z);
+	
+	void calc(void);
+	void get_pos(float *distance, float *twist, float *elevation, float *azimuth);
+};
 
 
 #endif
